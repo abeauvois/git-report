@@ -31,7 +31,8 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "nodemon": "^2.0.6",
     "rx-from-csv": "^1.0.0",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.3",
+    "yargs": "^16.1.1"
   },
   "devDependencies": {
     "eslint": "^7.14.0",
