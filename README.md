@@ -15,6 +15,7 @@ Or
 ## Todos
 
 - [ ] split/group each day by AM/ PM
+- [ ] accept formatting options (ie "Day 5:" => "Thu 5, Nov 2020:")
 
 ## Install
 
@@ -30,6 +31,19 @@ Or
 cd YOUR_FOLDER
 git clone https://github.com/abeauvois/git-report.git
 npm i
+```
+
+## How to create a CSV file with a line of headers (in /csv folder)
+
+```bash
+ > echo sha, contributor, date, message > ./csv/gitlog.csv
+```
+
+- Append the CSV file with git log output, filtered by your `git username`
+
+```bash
+ > git log --date=local --pretty=format:'%h, %an, %ad, "%s"' | egrep {YOUR GIT USERNAME} >> ./csv/gitlog.csv
+
 ```
 
 ## 1. For a report in the terminal's console:
@@ -66,19 +80,6 @@ GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 GOOGLE_CLIENT_REFRESH_TOKEN=
 PROJECT_NUMBER=
-```
-
-### Create a CSV file with a line of headers (in /csv folder)
-
-```bash
- > echo sha, contributor, date, message > ./csv/gitlog.csv
-```
-
-### Append the CSV file with git log, filtered by your `git username`
-
-```bash
- > git log --date=local --pretty=format:'%h, %an, %ad, "%s"' | egrep {YOUR GIT USERNAME} >> ./csv/gitlog.csv
-
 ```
 
 ## Send
