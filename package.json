@@ -1,0 +1,39 @@
+{
+  "name": "git-report",
+  "version": "1.0.0",
+  "description": "Creates a git log report grouped by month and by day and send it by email",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "jest --watch"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "keywords": [
+    "git",
+    "log",
+    "reporting",
+    "email",
+    "gmail",
+    "aouth2"
+  ],
+  "author": "abeauvois",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "ccxt": "^1.37.27",
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "googleapis": "^65.0.0",
+    "nodemailer": "^6.4.16",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "nodemon": "^2.0.6",
+    "rx-from-csv": "^1.0.0",
+    "rxjs": "^6.6.3"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

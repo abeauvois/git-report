@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`csv R1: fromCSVFile 1`] = `
+Array [
+  Object {
+    "contributor": " contributor",
+    "date": " date",
+    "message": " message",
+    "sha": "sha",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Fri Nov 13 10:40:39 2020",
+    "message": " \\"m1 nov\\"",
+    "sha": "1",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 16:06:45 2020",
+    "message": " \\"m2 nov\\"",
+    "sha": "2",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 16:03:21 2020",
+    "message": " \\"m3 nov\\"",
+    "sha": "3",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Oct 12 16:03:21 2020",
+    "message": " \\"m2 oct\\"",
+    "sha": "3",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Sep 12 16:03:21 2020",
+    "message": " \\"m1 sep\\"",
+    "sha": "3",
+  },
+]
+`;

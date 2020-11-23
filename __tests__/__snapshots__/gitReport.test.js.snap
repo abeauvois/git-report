@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gitReport R1: fromCSVFile 1`] = `
+Array [
+  Object {
+    "contributor": " contributor",
+    "date": " date",
+    "message": " message",
+    "sha": "sha",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Fri Nov 13 10:40:39 2020",
+    "message": " \\"m1 nov\\"",
+    "sha": "1",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 16:06:45 2020",
+    "message": " \\"m2 nov\\"",
+    "sha": "2",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 16:03:21 2020",
+    "message": " \\"m3 nov\\"",
+    "sha": "3",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Oct 12 16:03:21 2020",
+    "message": " \\"m2 oct\\"",
+    "sha": "3",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Sep 12 16:03:21 2020",
+    "message": " \\"m1 sep\\"",
+    "sha": "3",
+  },
+]
+`;
+
+exports[`gitReport R2: toDailyMapper 1`] = `
+Object {
+  "day": 13,
+  "message": "m1 nov",
+  "month": 10,
+  "weekDay": "Fri",
+}
+`;
+
+exports[`gitReport R3: groupByMonth & mergeByGroup 1`] = `
+Array [
+  10,
+  Array [
+    Object {
+      "day": 13,
+      "message": "m1 nov",
+      "month": 10,
+      "weekDay": "Fri",
+    },
+    Object {
+      "day": 12,
+      "message": "m2 nov",
+      "month": 10,
+      "weekDay": "Thu",
+    },
+    Object {
+      "day": 12,
+      "message": "m3 nov",
+      "month": 10,
+      "weekDay": "Thu",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R3: groupByMonth & mergeByGroup 2`] = `
+Array [
+  9,
+  Array [
+    Object {
+      "day": 12,
+      "message": "m2 oct",
+      "month": 9,
+      "weekDay": "Mon",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R3: groupByMonth & mergeByGroup 3`] = `
+Array [
+  8,
+  Array [
+    Object {
+      "day": 12,
+      "message": "m1 sep",
+      "month": 8,
+      "weekDay": "Sat",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R4: byMonthsAndDays 1`] = `
+Array [
+  10,
+  Array [
+    Object {
+      "day": 13,
+      "message": "m1 nov",
+      "month": 10,
+      "weekDay": "Fri",
+    },
+    Object {
+      "day": 12,
+      "message": "m2 nov",
+      "month": 10,
+      "weekDay": "Thu",
+    },
+    Object {
+      "day": 12,
+      "message": "m3 nov",
+      "month": 10,
+      "weekDay": "Thu",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R4: byMonthsAndDays 2`] = `
+Array [
+  9,
+  Array [
+    Object {
+      "day": 12,
+      "message": "m2 oct",
+      "month": 9,
+      "weekDay": "Mon",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R4: byMonthsAndDays 3`] = `
+Array [
+  8,
+  Array [
+    Object {
+      "day": 12,
+      "message": "m1 sep",
+      "month": 8,
+      "weekDay": "Sat",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R5: groupMessagesByDay 1`] = `
+Object {
+  "day": 13,
+  "messages": " m1 nov",
+  "month": 10,
+}
+`;
+
+exports[`gitReport R5: groupMessagesByDay 2`] = `
+Object {
+  "day": 12,
+  "messages": " m2 nov, m3 nov",
+  "month": 10,
+}
+`;
+
+exports[`gitReport R5: groupMessagesByDay 3`] = `
+Object {
+  "day": 12,
+  "messages": " m2 oct",
+  "month": 9,
+}
+`;
+
+exports[`gitReport R5: groupMessagesByDay 4`] = `
+Object {
+  "day": 12,
+  "messages": " m1 sep",
+  "month": 8,
+}
+`;
+
+exports[`gitReport R6: groupByMonthByDay 1`] = `
+Array [
+  10,
+  Array [
+    Object {
+      "day": 13,
+      "messages": " m1 nov",
+      "month": 10,
+    },
+    Object {
+      "day": 12,
+      "messages": " m2 nov, m3 nov",
+      "month": 10,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R6: groupByMonthByDay 2`] = `
+Array [
+  9,
+  Array [
+    Object {
+      "day": 12,
+      "messages": " m2 oct",
+      "month": 9,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R6: groupByMonthByDay 3`] = `
+Array [
+  8,
+  Array [
+    Object {
+      "day": 12,
+      "messages": " m1 sep",
+      "month": 8,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R7: buildReport 1`] = `
+"Month [34m10[39m
+Day [33m13[39m:  m1 nov
+Day [33m12[39m:  m2 nov, m3 nov
+
+Month [34m9[39m
+Day [33m12[39m:  m2 oct
+
+Month [34m8[39m
+Day [33m12[39m:  m1 sep
+
+"
+`;
+
+exports[`gitReport R8: sendGitReport to console 1`] = `
+"Month [34m10[39m
+Day [33m13[39m:  m1 nov
+Day [33m12[39m:  m2 nov, m3 nov
+
+Month [34m9[39m
+Day [33m12[39m:  m2 oct
+
+Month [34m8[39m
+Day [33m12[39m:  m1 sep
+
+"
+`;
