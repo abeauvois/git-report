@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`templates R5: consoleTemplate 1`] = `[Function]`;
+
+exports[`templates R5: htmlTemplate 1`] = `"Month <strong>9</strong><br><br>Day <strong>1</strong>: m1<br>Day <strong>2</strong>: m2<br><br>"`;
