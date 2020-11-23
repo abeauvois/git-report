@@ -2,10 +2,10 @@
   "name": "git-report",
   "version": "1.0.0",
   "description": "Creates a git log report grouped by month and by day and send it by email",
-  "main": "index.js",
+  "main": "gitReport.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon index.js",
+    "start": "node gitReport.js",
+    "watch": "nodemon gitReport.js",
     "test": "jest --watch"
   },
   "jest": {

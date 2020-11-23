@@ -8,9 +8,29 @@ You can display it:
 
 1. in your terminal
 
-OR
+Or
 
 2. send it to yourself via gmail.
+
+## Todos
+
+- [ ] split/group each day by AM/ PM
+
+## Install
+
+```bash
+cd YOUR_FOLDER
+git clone https://github.com/abeauvois/git-report.git
+yarn
+```
+
+Or
+
+```bash
+cd YOUR_FOLDER
+git clone https://github.com/abeauvois/git-report.git
+npm i
+```
 
 ## 1. For a report in the terminal's console:
 

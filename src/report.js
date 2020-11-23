@@ -36,10 +36,6 @@ const toMessagesMapper = (month) => ([day, datas]) => ({
 const groupMessagesByDay = ([month, tasks]) => from(tasks).pipe(groupByDay, mergeByGroup, map(toMessagesMapper(month)));
 const byMonthsAndDays = pipe(map(toDailyMapper), groupByMonth, mergeByGroup);
 
-// SOURCE: file from following commands
-// echo sha, contributor, date, message > log.csv
-// git log --date=local --pretty=format:'%h, %an, %ad, "%s"' >> log.csv
-
 const buildReport = ({ report = "", filename, limit = 100 }) => {
   return new Promise((resolve, reject) => {
     fromCSVFile(filename)
