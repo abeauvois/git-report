@@ -1,23 +1,5 @@
-const { resolveContent } = require("nodemailer/lib/shared");
-const { from, of, zip, pipe, timer, defer } = require("rxjs");
-const {
-  startWith,
-  delay,
-  tap,
-  take,
-  map,
-  skip,
-  groupBy,
-  switchMap,
-  mergeMap,
-  flatMap,
-  toArray,
-  switchMapTo,
-  repeat,
-  pairwise,
-  filter,
-  skipUntil,
-} = require("rxjs/operators");
+const { from, of, zip, pipe } = require("rxjs");
+const { take, map, skip, groupBy, mergeMap, toArray, filter } = require("rxjs/operators");
 
 const { sendMail } = require("./email");
 const { consoleTemplate } = require("./templates");
@@ -26,8 +8,6 @@ const { fromCSVFile } = require("./fromCSVFile");
 const groupByMonth = groupBy((r) => r.month);
 const groupByDay = groupBy((r) => r.day);
 const mergeByGroup = mergeMap((group) => zip(of(group.key), group.pipe(toArray())));
-
-const withoutBranchMerges = filter((task) => !task.message.includes("Merge branch"));
 
 const toDailyMapper = (row) => {
   var d = new Date(row.date);
