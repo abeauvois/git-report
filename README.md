@@ -18,13 +18,13 @@ OR
 yarn start console ./csv/real-world-git-log.csv -v
 ```
 
-## 2. For a report in by email via gmail to yourself:
-
-It requires developper skills if you want to use `gmail` to send this report by email with it.
-
 **You should see the following result in the terminal:**
 
 ![git-report-result](git-report-result.png)
+
+## 2. For a report in by email via gmail to yourself:
+
+It requires developper skills if you want to use `gmail` to send this report by email with it.
 
 ### Create an .env file (same place as package.json)
 
