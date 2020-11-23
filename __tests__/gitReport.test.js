@@ -1,15 +1,14 @@
-const { toArray, skip, pipe, map, take, mergeMap } = require("rxjs/operators");
+const { toArray, skip, map, take, mergeMap } = require("rxjs/operators");
 const { fromCSVFile } = require("../src/fromCSVFile");
 const {
   toDailyMapper,
   groupByMonth,
   mergeByGroup,
   byMonthsAndDays,
-  toMessagesMapper,
   groupMessagesByDay,
   buildReport,
   sendGitReport,
-} = require("../src/gitReport");
+} = require("../src/report");
 
 describe("gitReport", () => {
   const filename = "./__tests__/test_file.csv";

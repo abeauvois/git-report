@@ -16,6 +16,7 @@ Or
 
 - [ ] split/group each day by AM/ PM
 - [ ] accept formatting options (ie "Day 5:" => "Thu 5, Nov 2020:")
+- [ ] add `emailTo` parameter
 
 ## Install
 
@@ -56,7 +57,7 @@ yarn start console ./csv/real-world-git-log.csv -v
 
 ![git-report-result](git-report-result.png)
 
-## 2. For a report in by email via gmail to yourself:
+## 2. For a report sent by email to yourself (via gmail):
 
 It requires some devOps skills if you want to use `gmail` to send this report by email with it.
 
