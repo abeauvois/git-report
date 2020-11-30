@@ -1,10 +1,30 @@
-const { toArray, skip, map, take, mergeMap } = require("rxjs/operators");
+const { from, of, zip, pipe, combineLatest } = require("rxjs");
+const {
+  toArray,
+  skip,
+  map,
+  take,
+  mergeMap,
+  tap,
+  groupBy,
+  merge,
+  mergeAll,
+  concatMap,
+  expand,
+  filter,
+  flatMap,
+} = require("rxjs/operators");
 const { fromCSVFile } = require("../src/fromCSVFile");
 const {
-  toDailyMapper,
+  toDateTimeMapper,
+  groupByYear,
   groupByMonth,
+  groupByDay,
+  groupByAmPm,
   mergeByGroup,
-  byMonthsAndDays,
+  // groupMessagesByAmPm,
+  groupAndMergeByMonth,
+  groupAndMergeByDay,
   groupMessagesByDay,
   buildReport,
   sendGitReport,
@@ -25,9 +45,9 @@ describe("gitReport", () => {
       );
   });
 
-  test("R2: toDailyMapper", (done) => {
+  test("R2: toDateTimeMapper", (done) => {
     fromCSVFile(filename)
-      .pipe(skip(1), take(1), map(toDailyMapper))
+      .pipe(skip(1), take(1), map(toDateTimeMapper))
       .subscribe(
         (received) => {
           expect(received).toMatchSnapshot();
@@ -37,9 +57,9 @@ describe("gitReport", () => {
       );
   });
 
-  test("R3: groupByMonth & mergeByGroup", (done) => {
+  test("R3.a: groupByYear & mergeByGroup", (done) => {
     fromCSVFile(filename)
-      .pipe(skip(1), map(toDailyMapper), groupByMonth, mergeByGroup)
+      .pipe(skip(1), map(toDateTimeMapper), groupByYear, mergeByGroup)
       .subscribe(
         (received) => {
           expect(received).toMatchSnapshot();
@@ -49,9 +69,21 @@ describe("gitReport", () => {
       );
   });
 
-  test("R4: byMonthsAndDays", (done) => {
+  test("R3.b: groupByMonth & mergeByGroup", (done) => {
     fromCSVFile(filename)
-      .pipe(skip(1), byMonthsAndDays)
+      .pipe(skip(1), map(toDateTimeMapper), groupByMonth, mergeByGroup)
+      .subscribe(
+        (received) => {
+          expect(received).toMatchSnapshot();
+          done();
+        },
+        (e) => console.log("Errroor", e)
+      );
+  });
+
+  test("R4: groupAndMergeByMonth", (done) => {
+    fromCSVFile(filename)
+      .pipe(skip(1), map(toDateTimeMapper), groupAndMergeByMonth)
       .subscribe(
         (received) => {
           expect(received).toMatchSnapshot();
@@ -63,7 +95,7 @@ describe("gitReport", () => {
 
   test("R5: groupMessagesByDay", (done) => {
     fromCSVFile(filename)
-      .pipe(skip(1), byMonthsAndDays, mergeMap(groupMessagesByDay))
+      .pipe(skip(1), map(toDateTimeMapper), groupAndMergeByDay, mergeMap(groupMessagesByDay))
       .subscribe(
         (received) => {
           expect(received).toMatchSnapshot();
@@ -74,8 +106,26 @@ describe("gitReport", () => {
   });
 
   test("R6: groupByMonthByDay", (done) => {
-    fromCSVFile(filename)
-      .pipe(skip(1), byMonthsAndDays, mergeMap(groupMessagesByDay), groupByMonth, mergeByGroup)
+    const asArray = (group) => group.pipe(toArray());
+    const groupMapper = (group) => zip(of(group.key), asArray(group));
+    const mergeGroup = mergeMap(groupMapper);
+
+    const source$ = fromCSVFile(filename).pipe(skip(1), map(toDateTimeMapper));
+
+    const sourceByYear$ = source$.pipe(groupByYear, mergeGroup);
+    const sourceByMonth$ = (list) => from(list).pipe(groupByMonth, mergeGroup);
+    const sourceByDay$ = (list) => from(list).pipe(groupByDay, mergeGroup);
+
+    sourceByYear$
+      .pipe(
+        filter(([_, list]) => Boolean(list)), // remove undefined list
+        flatMap(([year, list]) => combineLatest([of(year), sourceByMonth$(list)])),
+        flatMap(([year, [month, list]]) => combineLatest([of(year), combineLatest([of(month), sourceByDay$(list)])])),
+        flatMap(([year, [month, [day, list]]]) =>
+          combineLatest([of(year), combineLatest([of(month), groupMessagesByDay([day, list])])])
+        )
+        // tap((t) => console.log("t:", t))
+      )
       .subscribe(
         (received) => {
           expect(received).toMatchSnapshot();
@@ -86,7 +136,7 @@ describe("gitReport", () => {
   });
 
   test("R7: buildReport", (done) => {
-    buildReport({ filename: filename }).then((received) => {
+    buildReport({ filename }).then((received) => {
       expect(received).toMatchSnapshot();
       done();
     });

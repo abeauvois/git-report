@@ -15,32 +15,28 @@ describe("templates", () => {
     received = null;
     expected = null;
   });
-  test("R1: htmlTemplate: month in console", () => {
+  test("R1: monthTemplate: month in console", () => {
     received = monthTemplate(fromCSVfile[0], "console");
-    expected = c.blue(fromCSVfile[0]);
-    expect(received).toEqual(expected);
+    expect(received).toMatchSnapshot();
   });
 
-  test("R2: htmlTemplate: month in html", () => {
+  test("R2: monthTemplate: month in html", () => {
     received = monthTemplate(fromCSVfile[0]);
-    expected = `<strong>${fromCSVfile[0]}</strong>`;
-    expect(received).toEqual(expected);
+    expect(received).toMatchSnapshot();
   });
 
-  test("R3: htmlTemplate: day in console", () => {
+  test("R3: dayTemplate: day in console", () => {
     const days = fromCSVfile[1];
 
     received = dayTemplate(days[0], "console");
-    expected = c.yellow(days[0].day);
-    expect(received).toEqual(expected);
+    expect(received).toMatchSnapshot();
   });
 
-  test("R4: htmlTemplate: day in html", () => {
+  test("R4: dayTemplate: day in html", () => {
     const days = fromCSVfile[1];
 
     received = dayTemplate(days[0]);
-    expected = `<strong>${days[0].day}</strong>`;
-    expect(received).toEqual(expected);
+    expect(received).toMatchSnapshot();
   });
 
   test("R5: htmlTemplate", () => {

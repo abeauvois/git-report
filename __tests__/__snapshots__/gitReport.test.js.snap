@@ -11,148 +11,406 @@ Array [
   Object {
     "contributor": " abeauvois",
     "date": " Fri Nov 13 10:40:39 2020",
-    "message": " \\"m1 nov\\"",
-    "sha": "1",
-  },
-  Object {
-    "contributor": " abeauvois",
-    "date": " Thu Nov 12 16:06:45 2020",
-    "message": " \\"m2 nov\\"",
+    "message": " \\"m1 13 nov\\"",
     "sha": "2",
   },
   Object {
     "contributor": " abeauvois",
-    "date": " Thu Nov 12 16:03:21 2020",
-    "message": " \\"m3 nov\\"",
+    "date": " Thu Nov 12 16:06:45 2020",
+    "message": " \\"m2 12 nov PM\\"",
     "sha": "3",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 10:03:21 2020",
+    "message": " \\"m3 12 nov AM\\"",
+    "sha": "4",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 11:03:21 2020",
+    "message": " \\"m3 12 nov AM\\"",
+    "sha": "4",
   },
   Object {
     "contributor": " abeauvois",
     "date": " Thu Oct 12 16:03:21 2020",
     "message": " \\"m2 oct\\"",
-    "sha": "3",
+    "sha": "5",
   },
   Object {
     "contributor": " abeauvois",
     "date": " Thu Sep 12 16:03:21 2020",
     "message": " \\"m1 sep\\"",
-    "sha": "3",
+    "sha": "6",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Fri Jan 01 10:40:39 2021",
+    "message": " \\"m1 01 janv 21\\"",
+    "sha": "1",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Mon Feb 01 13:40:39 2021",
+    "message": " \\"m1 01 fev 21\\"",
+    "sha": "0",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Wed Nov 03 13:40:39 2021",
+    "message": " \\"m1 03 nov 21\\"",
+    "sha": "0",
   },
 ]
 `;
 
-exports[`gitReport R2: toDailyMapper 1`] = `
+exports[`gitReport R2: toDateTimeMapper 1`] = `
 Object {
+  "ampm": "am",
   "day": 13,
-  "message": "m1 nov",
+  "dayWeek": 5,
+  "hour": 10,
+  "message": "m1 13 nov",
   "month": 10,
-  "weekDay": "Fri",
+  "year": 2020,
 }
 `;
 
-exports[`gitReport R3: groupByMonth & mergeByGroup 1`] = `
+exports[`gitReport R3.a: groupByYear & mergeByGroup 1`] = `
+Array [
+  2020,
+  Array [
+    Object {
+      "ampm": "am",
+      "day": 13,
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 13 nov",
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "pm",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 16,
+      "message": "m2 12 nov PM",
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 10,
+      "message": "m3 12 nov AM",
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 11,
+      "message": "m3 12 nov AM",
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "pm",
+      "day": 12,
+      "dayWeek": 1,
+      "hour": 16,
+      "message": "m2 oct",
+      "month": 9,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "pm",
+      "day": 12,
+      "dayWeek": 6,
+      "hour": 16,
+      "message": "m1 sep",
+      "month": 8,
+      "year": 2020,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R3.a: groupByYear & mergeByGroup 2`] = `
+Array [
+  2021,
+  Array [
+    Object {
+      "ampm": "am",
+      "day": 1,
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 01 janv 21",
+      "month": 0,
+      "year": 2021,
+    },
+    Object {
+      "ampm": "pm",
+      "day": 1,
+      "dayWeek": 1,
+      "hour": 13,
+      "message": "m1 01 fev 21",
+      "month": 1,
+      "year": 2021,
+    },
+    Object {
+      "ampm": "pm",
+      "day": 3,
+      "dayWeek": 3,
+      "hour": 13,
+      "message": "m1 03 nov 21",
+      "month": 10,
+      "year": 2021,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R3.b: groupByMonth & mergeByGroup 1`] = `
 Array [
   10,
   Array [
     Object {
+      "ampm": "am",
       "day": 13,
-      "message": "m1 nov",
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 13 nov",
       "month": 10,
-      "weekDay": "Fri",
+      "year": 2020,
     },
     Object {
+      "ampm": "pm",
       "day": 12,
-      "message": "m2 nov",
+      "dayWeek": 4,
+      "hour": 16,
+      "message": "m2 12 nov PM",
       "month": 10,
-      "weekDay": "Thu",
+      "year": 2020,
     },
     Object {
+      "ampm": "am",
       "day": 12,
-      "message": "m3 nov",
+      "dayWeek": 4,
+      "hour": 10,
+      "message": "m3 12 nov AM",
       "month": 10,
-      "weekDay": "Thu",
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 11,
+      "message": "m3 12 nov AM",
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "pm",
+      "day": 3,
+      "dayWeek": 3,
+      "hour": 13,
+      "message": "m1 03 nov 21",
+      "month": 10,
+      "year": 2021,
     },
   ],
 ]
 `;
 
-exports[`gitReport R3: groupByMonth & mergeByGroup 2`] = `
+exports[`gitReport R3.b: groupByMonth & mergeByGroup 2`] = `
 Array [
   9,
   Array [
     Object {
+      "ampm": "pm",
       "day": 12,
+      "dayWeek": 1,
+      "hour": 16,
       "message": "m2 oct",
       "month": 9,
-      "weekDay": "Mon",
+      "year": 2020,
     },
   ],
 ]
 `;
 
-exports[`gitReport R3: groupByMonth & mergeByGroup 3`] = `
+exports[`gitReport R3.b: groupByMonth & mergeByGroup 3`] = `
 Array [
   8,
   Array [
     Object {
+      "ampm": "pm",
       "day": 12,
+      "dayWeek": 6,
+      "hour": 16,
       "message": "m1 sep",
       "month": 8,
-      "weekDay": "Sat",
+      "year": 2020,
     },
   ],
 ]
 `;
 
-exports[`gitReport R4: byMonthsAndDays 1`] = `
+exports[`gitReport R3.b: groupByMonth & mergeByGroup 4`] = `
+Array [
+  0,
+  Array [
+    Object {
+      "ampm": "am",
+      "day": 1,
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 01 janv 21",
+      "month": 0,
+      "year": 2021,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R3.b: groupByMonth & mergeByGroup 5`] = `
+Array [
+  1,
+  Array [
+    Object {
+      "ampm": "pm",
+      "day": 1,
+      "dayWeek": 1,
+      "hour": 13,
+      "message": "m1 01 fev 21",
+      "month": 1,
+      "year": 2021,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R4: groupAndMergeByMonth 1`] = `
 Array [
   10,
   Array [
     Object {
+      "ampm": "am",
       "day": 13,
-      "message": "m1 nov",
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 13 nov",
       "month": 10,
-      "weekDay": "Fri",
+      "year": 2020,
     },
     Object {
+      "ampm": "pm",
       "day": 12,
-      "message": "m2 nov",
+      "dayWeek": 4,
+      "hour": 16,
+      "message": "m2 12 nov PM",
       "month": 10,
-      "weekDay": "Thu",
+      "year": 2020,
     },
     Object {
+      "ampm": "am",
       "day": 12,
-      "message": "m3 nov",
+      "dayWeek": 4,
+      "hour": 10,
+      "message": "m3 12 nov AM",
       "month": 10,
-      "weekDay": "Thu",
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 11,
+      "message": "m3 12 nov AM",
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "pm",
+      "day": 3,
+      "dayWeek": 3,
+      "hour": 13,
+      "message": "m1 03 nov 21",
+      "month": 10,
+      "year": 2021,
     },
   ],
 ]
 `;
 
-exports[`gitReport R4: byMonthsAndDays 2`] = `
+exports[`gitReport R4: groupAndMergeByMonth 2`] = `
 Array [
   9,
   Array [
     Object {
+      "ampm": "pm",
       "day": 12,
+      "dayWeek": 1,
+      "hour": 16,
       "message": "m2 oct",
       "month": 9,
-      "weekDay": "Mon",
+      "year": 2020,
     },
   ],
 ]
 `;
 
-exports[`gitReport R4: byMonthsAndDays 3`] = `
+exports[`gitReport R4: groupAndMergeByMonth 3`] = `
 Array [
   8,
   Array [
     Object {
+      "ampm": "pm",
       "day": 12,
+      "dayWeek": 6,
+      "hour": 16,
       "message": "m1 sep",
       "month": 8,
-      "weekDay": "Sat",
+      "year": 2020,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R4: groupAndMergeByMonth 4`] = `
+Array [
+  0,
+  Array [
+    Object {
+      "ampm": "am",
+      "day": 1,
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 01 janv 21",
+      "month": 0,
+      "year": 2021,
+    },
+  ],
+]
+`;
+
+exports[`gitReport R4: groupAndMergeByMonth 5`] = `
+Array [
+  1,
+  Array [
+    Object {
+      "ampm": "pm",
+      "day": 1,
+      "dayWeek": 1,
+      "hour": 13,
+      "message": "m1 01 fev 21",
+      "month": 1,
+      "year": 2021,
     },
   ],
 ]
@@ -161,48 +419,49 @@ Array [
 exports[`gitReport R5: groupMessagesByDay 1`] = `
 Object {
   "day": 13,
-  "messages": " m1 nov",
-  "month": 10,
+  "dayWeek": 5,
+  "messagesAm": " m1 13 nov",
+  "messagesPm": "",
 }
 `;
 
 exports[`gitReport R5: groupMessagesByDay 2`] = `
 Object {
   "day": 12,
-  "messages": " m2 nov, m3 nov",
-  "month": 10,
+  "dayWeek": 4,
+  "messagesAm": " m3 12 nov AM, m3 12 nov AM",
+  "messagesPm": " m2 12 nov PM, m2 oct, m1 sep",
 }
 `;
 
 exports[`gitReport R5: groupMessagesByDay 3`] = `
 Object {
-  "day": 12,
-  "messages": " m2 oct",
-  "month": 9,
+  "day": 1,
+  "dayWeek": 5,
+  "messagesAm": " m1 01 janv 21",
+  "messagesPm": " m1 01 fev 21",
 }
 `;
 
 exports[`gitReport R5: groupMessagesByDay 4`] = `
 Object {
-  "day": 12,
-  "messages": " m1 sep",
-  "month": 8,
+  "day": 3,
+  "dayWeek": 3,
+  "messagesAm": "",
+  "messagesPm": " m1 03 nov 21",
 }
 `;
 
 exports[`gitReport R6: groupByMonthByDay 1`] = `
 Array [
-  10,
+  2020,
   Array [
+    10,
     Object {
       "day": 13,
-      "messages": " m1 nov",
-      "month": 10,
-    },
-    Object {
-      "day": 12,
-      "messages": " m2 nov, m3 nov",
-      "month": 10,
+      "dayWeek": 5,
+      "messagesAm": " m1 13 nov",
+      "messagesPm": "",
     },
   ],
 ]
@@ -210,12 +469,14 @@ Array [
 
 exports[`gitReport R6: groupByMonthByDay 2`] = `
 Array [
-  9,
+  2020,
   Array [
+    10,
     Object {
       "day": 12,
-      "messages": " m2 oct",
-      "month": 9,
+      "dayWeek": 4,
+      "messagesAm": " m3 12 nov AM, m3 12 nov AM",
+      "messagesPm": " m2 12 nov PM",
     },
   ],
 ]
@@ -223,41 +484,153 @@ Array [
 
 exports[`gitReport R6: groupByMonthByDay 3`] = `
 Array [
-  8,
+  2020,
   Array [
+    9,
     Object {
       "day": 12,
-      "messages": " m1 sep",
-      "month": 8,
+      "dayWeek": 1,
+      "messagesAm": "",
+      "messagesPm": " m2 oct",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R6: groupByMonthByDay 4`] = `
+Array [
+  2020,
+  Array [
+    8,
+    Object {
+      "day": 12,
+      "dayWeek": 6,
+      "messagesAm": "",
+      "messagesPm": " m1 sep",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R6: groupByMonthByDay 5`] = `
+Array [
+  2021,
+  Array [
+    0,
+    Object {
+      "day": 1,
+      "dayWeek": 5,
+      "messagesAm": " m1 01 janv 21",
+      "messagesPm": "",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R6: groupByMonthByDay 6`] = `
+Array [
+  2021,
+  Array [
+    1,
+    Object {
+      "day": 1,
+      "dayWeek": 1,
+      "messagesAm": "",
+      "messagesPm": " m1 01 fev 21",
+    },
+  ],
+]
+`;
+
+exports[`gitReport R6: groupByMonthByDay 7`] = `
+Array [
+  2021,
+  Array [
+    10,
+    Object {
+      "day": 3,
+      "dayWeek": 3,
+      "messagesAm": "",
+      "messagesPm": " m1 03 nov 21",
     },
   ],
 ]
 `;
 
 exports[`gitReport R7: buildReport 1`] = `
-"Month [34m10[39m
-Day [33m13[39m:  m1 nov
-Day [33m12[39m:  m2 nov, m3 nov
+"[34mDec[39m 2020
+[33mFri[39m, [33m13[39m
+AM: [33m m1 13 nov[39m
+PM: 
 
-Month [34m9[39m
-Day [33m12[39m:  m2 oct
+[34mDec[39m 2020
+[33mThu[39m, [33m12[39m
+AM: [33m m3 12 nov AM, m3 12 nov AM[39m
+PM: [33m m2 12 nov PM[39m
 
-Month [34m8[39m
-Day [33m12[39m:  m1 sep
+[34mNov[39m 2020
+[33mMon[39m, [33m12[39m
+AM: 
+PM: [33m m2 oct[39m
+
+[34mOct[39m 2020
+[33mSat[39m, [33m12[39m
+AM: 
+PM: [33m m1 sep[39m
+
+[34mJan[39m 2021
+[33mFri[39m, [33m1[39m
+AM: [33m m1 01 janv 21[39m
+PM: 
+
+[34mFeb[39m 2021
+[33mMon[39m, [33m1[39m
+AM: 
+PM: [33m m1 01 fev 21[39m
+
+[34mDec[39m 2021
+[33mWed[39m, [33m3[39m
+AM: 
+PM: [33m m1 03 nov 21[39m
 
 "
 `;
 
 exports[`gitReport R8: sendGitReport to console 1`] = `
-"Month [34m10[39m
-Day [33m13[39m:  m1 nov
-Day [33m12[39m:  m2 nov, m3 nov
+"[34mDec[39m 2020
+[33mFri[39m, [33m13[39m
+AM: [33m m1 13 nov[39m
+PM: 
 
-Month [34m9[39m
-Day [33m12[39m:  m2 oct
+[34mDec[39m 2020
+[33mThu[39m, [33m12[39m
+AM: [33m m3 12 nov AM, m3 12 nov AM[39m
+PM: [33m m2 12 nov PM[39m
 
-Month [34m8[39m
-Day [33m12[39m:  m1 sep
+[34mNov[39m 2020
+[33mMon[39m, [33m12[39m
+AM: 
+PM: [33m m2 oct[39m
+
+[34mOct[39m 2020
+[33mSat[39m, [33m12[39m
+AM: 
+PM: [33m m1 sep[39m
+
+[34mJan[39m 2021
+[33mFri[39m, [33m1[39m
+AM: [33m m1 01 janv 21[39m
+PM: 
+
+[34mFeb[39m 2021
+[33mMon[39m, [33m1[39m
+AM: 
+PM: [33m m1 01 fev 21[39m
+
+[34mDec[39m 2021
+[33mWed[39m, [33m3[39m
+AM: 
+PM: [33m m1 03 nov 21[39m
 
 "
 `;
