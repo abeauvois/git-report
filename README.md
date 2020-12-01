@@ -15,6 +15,18 @@ Or
 ## Todos
 
 - [x] split/group each day by AM/ PM
+- [ ] make it installable with command:
+
+add `#!/usr/bin/env node` in gitreport first line
+
+```bash
+curl "https://raw.githubusercontent.com/abeauvois/git-report/master/gitreport" -o /usr/local/bin/gitreport && chmod +x /usr/local/bin/gitreport
+```
+
+curl -H "Accept: application/vnd.github.v3.raw" \
+ -H "Authorization: token $github_personal_access_token" \
+     "$file_url" 2> err.log > output.json
+
 - [ ] add `fromDate` parameter
 - [ ] add `defaultMessage` prameter when AM or PM empty (ie 'meeting')
 - [ ] add `emailTo` parameter
