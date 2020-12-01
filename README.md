@@ -14,9 +14,11 @@ Or
 
 ## Todos
 
-- [ ] split/group each day by AM/ PM
-- [ ] accept formatting options (ie "Day 5:" => "Thu 5, Nov 2020:")
+- [x] split/group each day by AM/ PM
+- [ ] add `fromDate` parameter
+- [ ] add `defaultMessage` prameter when AM or PM empty (ie 'meeting')
 - [ ] add `emailTo` parameter
+- [ ] accept formatting options (ie "Day 5:" => "Thu 5, Nov 2020:")
 
 ## Install
 
@@ -51,6 +53,9 @@ npm i
 
 ```bash
 yarn start console ./csv/real-world-git-log.csv -v
+
+# use your own csv file (produced by the git log command above)
+yarn start console ./csv/{your_csv_file} -v
 ```
 
 **You should see the following result in the terminal:**
