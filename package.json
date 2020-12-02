@@ -1,8 +1,8 @@
 {
-  "name": "git-report",
+  "name": "gitreport",
   "version": "1.0.0",
   "description": "Creates a git log report grouped by month and by day and send it by email",
-  "main": "gitReport.js",
+  "main": "gitreport.js",
   "scripts": {
     "start": "node gitReport.js",
     "watch": "nodemon gitReport.js",
@@ -37,5 +37,14 @@
   "devDependencies": {
     "eslint": "^7.14.0",
     "jest": "^26.6.3"
+  },
+  "bin": "gitreport.js",
+  "pkg": {
+    "assets": [
+      "views/**/*"
+    ],
+    "targets": [
+      "node8"
+    ]
   }
 }

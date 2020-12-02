@@ -12,27 +12,26 @@ Or
 
 2. send it to yourself via gmail.
 
-## Todos
-
-- [x] split/group each day by AM/ PM
-- [ ] make it installable with command:
-
-add `#!/usr/bin/env node` in gitreport first line
+## How to contribute
 
 ```bash
-curl "https://raw.githubusercontent.com/abeauvois/git-report/master/gitreport" -o /usr/local/bin/gitreport && chmod +x /usr/local/bin/gitreport
+curl "https://raw.githubusercontent.com/abeauvois/git-report/main/gitreport" -o /usr/local/bin/gitreport && chmod +x /usr/local/bin/gitreport
 ```
 
 curl -H "Accept: application/vnd.github.v3.raw" \
  -H "Authorization: token $github_personal_access_token" \
      "$file_url" 2> err.log > output.json
 
+## Todos
+
+- [x] split/group each day by AM/ PM
+- [x] make it installable
 - [ ] add `fromDate` parameter
 - [ ] add `defaultMessage` prameter when AM or PM empty (ie 'meeting')
 - [ ] add `emailTo` parameter
 - [ ] accept formatting options (ie "Day 5:" => "Thu 5, Nov 2020:")
 
-## Install
+## How to contribute
 
 ```bash
 cd YOUR_FOLDER
@@ -46,6 +45,28 @@ Or
 cd YOUR_FOLDER
 git clone https://github.com/abeauvois/git-report.git
 npm i
+```
+
+### How to compile
+
+```bash
+# install the js compiler
+yarn global add pkg
+
+# run the compiler for your architecture (see details here: https://github.com/vercel/pkg)
+ pkg . -t node10-macos-x64 -o ./bin
+```
+
+### How to execute
+
+```bash
+./gitreport console ./csv/gitlog.csv -v
+
+OR
+# copy all files in ./bin
+cp ./bin/ /usr/local/bin/
+# then directly
+gitreport console ./csv/gitlog.csv -v
 ```
 
 ## How to create a CSV file with a line of headers (in /csv folder)
