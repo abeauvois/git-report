@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`templates R1: monthTemplate: month in console 1`] = `"[34mNov[39m"`;
+exports[`templates R1: monthTemplate: month in console 1`] = `"[34mOct[39m"`;
 
-exports[`templates R2: monthTemplate: month in html 1`] = `"<strong>9, Nov</strong>"`;
+exports[`templates R2: monthTemplate: month in html 1`] = `"<strong>8, Oct</strong>"`;
 
 exports[`templates R3: dayTemplate: day in console 1`] = `"[33m1[39m"`;
 
@@ -10,4 +10,4 @@ exports[`templates R4: dayTemplate: day in html 1`] = `"<strong>1</strong>"`;
 
 exports[`templates R5: consoleTemplate 1`] = `[Function]`;
 
-exports[`templates R5: htmlTemplate 1`] = `"Month <strong>9, Nov</strong><br><br>Day <strong>1</strong>: m1<br>Day <strong>2</strong>: m2<br><br>"`;
+exports[`templates R5: htmlTemplate 1`] = `"Month <strong>8, Oct</strong><br><br>Day <strong>1</strong>: m1<br>Day <strong>2</strong>: m2<br><br>"`;

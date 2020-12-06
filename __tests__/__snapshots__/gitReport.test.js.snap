@@ -558,37 +558,35 @@ Array [
 `;
 
 exports[`gitReport R7: buildReport 1`] = `
-"[34mDec[39m 2020
+"[34mNov[39m 2020
 [33mFri[39m, [33m13[39m
 AM: [33m m1 13 nov[39m
 PM: 
 
-[34mDec[39m 2020
 [33mThu[39m, [33m12[39m
 AM: [33m m3 12 nov AM, m3 12 nov AM[39m
 PM: [33m m2 12 nov PM[39m
 
-[34mNov[39m 2020
+[34mOct[39m 2020
 [33mMon[39m, [33m12[39m
 AM: 
 PM: [33m m2 oct[39m
 
-[34mOct[39m 2020
+[34mAug[39m 2020
 [33mSat[39m, [33m12[39m
 AM: 
 PM: [33m m1 sep[39m
 
-[34mJan[39m 2021
+[34mundefined[39m 2021
 [33mFri[39m, [33m1[39m
 AM: [33m m1 01 janv 21[39m
 PM: 
 
-[34mFeb[39m 2021
+[34mJan[39m 2021
 [33mMon[39m, [33m1[39m
 AM: 
 PM: [33m m1 01 fev 21[39m
 
-[34mDec[39m 2021
 [33mWed[39m, [33m3[39m
 AM: 
 PM: [33m m1 03 nov 21[39m
@@ -597,37 +595,34 @@ PM: [33m m1 03 nov 21[39m
 `;
 
 exports[`gitReport R8: sendGitReport to console 1`] = `
-"[34mDec[39m 2020
-[33mFri[39m, [33m13[39m
+"[33mFri[39m, [33m13[39m
 AM: [33m m1 13 nov[39m
 PM: 
 
-[34mDec[39m 2020
 [33mThu[39m, [33m12[39m
 AM: [33m m3 12 nov AM, m3 12 nov AM[39m
 PM: [33m m2 12 nov PM[39m
 
-[34mNov[39m 2020
+[34mOct[39m 2020
 [33mMon[39m, [33m12[39m
 AM: 
 PM: [33m m2 oct[39m
 
-[34mOct[39m 2020
+[34mAug[39m 2020
 [33mSat[39m, [33m12[39m
 AM: 
 PM: [33m m1 sep[39m
 
-[34mJan[39m 2021
+[34mundefined[39m 2021
 [33mFri[39m, [33m1[39m
 AM: [33m m1 01 janv 21[39m
 PM: 
 
-[34mFeb[39m 2021
+[34mJan[39m 2021
 [33mMon[39m, [33m1[39m
 AM: 
 PM: [33m m1 01 fev 21[39m
 
-[34mDec[39m 2021
 [33mWed[39m, [33m3[39m
 AM: 
 PM: [33m m1 03 nov 21[39m

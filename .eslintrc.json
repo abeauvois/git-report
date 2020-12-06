@@ -2,13 +2,15 @@
   "env": {
     "browser": true,
     "commonjs": true,
-    "es6": true
+    "es6": true,
+    "jest/globals": true
   },
   "extends": "eslint:recommended",
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
-    "process": "readonly"
+    "process": "readonly",
+    "describe": "readonly"
   },
   "parserOptions": {
     "ecmaVersion": 2018

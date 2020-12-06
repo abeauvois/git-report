@@ -1,4 +1,4 @@
-// const { from, of, zip, pipe, combineLatest, interval } = require("rxjs");
+const { from, of, zip, pipe, combineLatest, interval } = require("rxjs");
 const {
   map,
   startWith,
@@ -52,6 +52,11 @@ const getWeek = function (date, dowOffset) {
   return weeknum;
 };
 
+const formatDateLocale = () =>
+  map((date) => {
+    return date.toLocaleDateString("fr-fr", { timeZone: "Europe/Paris" });
+  });
+
 const getCalendarDaysStartingAt = (source$, startDate) => {
   const date = new Date(startDate);
   return source$.pipe(
@@ -59,9 +64,6 @@ const getCalendarDaysStartingAt = (source$, startDate) => {
     scan((acc, _) => {
       const newDate = acc.setDate(acc.getDate() + 1);
       return new Date(newDate);
-    }),
-    map((date) => {
-      return date.toLocaleDateString("fr-fr");
     })
   );
 };
@@ -90,4 +92,5 @@ const getCalendarWeeksStartingAt = (source$, startDate) => {
 module.exports = {
   getCalendarDaysStartingAt,
   getCalendarWeeksStartingAt,
+  formatDateLocale,
 };

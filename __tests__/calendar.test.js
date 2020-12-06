@@ -1,6 +1,6 @@
 const { TestScheduler } = require("rxjs/testing");
 
-const { getCalendarDaysStartingAt, getCalendarWeeksStartingAt } = require("../src/calendar");
+const { getCalendarDaysStartingAt, getCalendarWeeksStartingAt, formatDateLocale } = require("../src/calendar");
 
 describe("calendar", () => {
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe("calendar", () => {
   test("R1: getCalendarDaysStartingAt", () => {
     function go(source$) {
       const initialDate = "2020-03-01";
-      return getCalendarDaysStartingAt(source$, initialDate);
+      return getCalendarDaysStartingAt(source$, initialDate).pipe(formatDateLocale());
     }
 
     rxTest.run((helpers) => {

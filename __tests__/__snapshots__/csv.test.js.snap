@@ -11,32 +11,56 @@ Array [
   Object {
     "contributor": " abeauvois",
     "date": " Fri Nov 13 10:40:39 2020",
-    "message": " \\"m1 nov\\"",
-    "sha": "1",
-  },
-  Object {
-    "contributor": " abeauvois",
-    "date": " Thu Nov 12 16:06:45 2020",
-    "message": " \\"m2 nov\\"",
+    "message": " \\"m1 13 nov\\"",
     "sha": "2",
   },
   Object {
     "contributor": " abeauvois",
-    "date": " Thu Nov 12 16:03:21 2020",
-    "message": " \\"m3 nov\\"",
+    "date": " Thu Nov 12 16:06:45 2020",
+    "message": " \\"m2 12 nov PM\\"",
     "sha": "3",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 10:03:21 2020",
+    "message": " \\"m3 12 nov AM\\"",
+    "sha": "4",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Thu Nov 12 11:03:21 2020",
+    "message": " \\"m3 12 nov AM\\"",
+    "sha": "4",
   },
   Object {
     "contributor": " abeauvois",
     "date": " Thu Oct 12 16:03:21 2020",
     "message": " \\"m2 oct\\"",
-    "sha": "3",
+    "sha": "5",
   },
   Object {
     "contributor": " abeauvois",
     "date": " Thu Sep 12 16:03:21 2020",
     "message": " \\"m1 sep\\"",
-    "sha": "3",
+    "sha": "6",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Fri Jan 01 10:40:39 2021",
+    "message": " \\"m1 01 janv 21\\"",
+    "sha": "1",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Mon Feb 01 13:40:39 2021",
+    "message": " \\"m1 01 fev 21\\"",
+    "sha": "0",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Wed Nov 03 13:40:39 2021",
+    "message": " \\"m1 03 nov 21\\"",
+    "sha": "0",
   },
 ]
 `;
