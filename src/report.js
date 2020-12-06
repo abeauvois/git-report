@@ -1,6 +1,5 @@
-const { from, of, zip, pipe, combineLatest, interval } = require("rxjs");
+const { from, of, zip, pipe, combineLatest } = require("rxjs");
 const {
-  take,
   map,
   skip,
   groupBy,
@@ -8,29 +7,16 @@ const {
   toArray,
   filter,
   flatMap,
-  tap,
-  startWith,
-  scan,
+  // take,
+  // tap,
+  // startWith,
+  // scan,
+  // distinctUntilChanged,
 } = require("rxjs/operators");
 
 const { sendMail } = require("./email");
 const { consoleTemplate } = require("./templates");
 const { fromCSVFile } = require("./fromCSVFile");
-
-const getCalendarDaysStartingAt = (source$, startDate) => {
-  const date = new Date(startDate);
-  return source$.pipe(
-    startWith(date),
-    scan((acc, curr) => {
-      const newDate = acc.setDate(acc.getDate() + 1);
-      return new Date(newDate);
-    }),
-    map((date) => {
-      console.log("🚀 ~ file: report.js ~ line 29 ~ map ~ date", date);
-      return date.toLocaleDateString("fr-fr");
-    })
-  );
-};
 
 const groupByYear = groupBy((r) => r.year);
 const groupByMonth = groupBy((r) => r.month);
@@ -131,7 +117,6 @@ module.exports = {
   groupAndMergeByDay,
   groupMessagesByDay,
   // groupMessagesByAmPm,
-  getCalendarDaysStartingAt,
   buildReport,
   sendGitReport,
 };

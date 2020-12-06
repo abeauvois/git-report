@@ -54,6 +54,7 @@ const htmlTemplate = ([month, days]) => {
 module.exports = {
   monthTemplate,
   dayTemplate,
+  toDayName,
   htmlTemplate,
   consoleTemplate,
 };

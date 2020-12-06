@@ -1,36 +1,6 @@
 const { TestScheduler } = require("rxjs/testing");
-const { from, of, zip, pipe, combineLatest } = require("rxjs");
-const {
-  toArray,
-  skip,
-  map,
-  take,
-  mergeMap,
-  tap,
-  groupBy,
-  merge,
-  mergeAll,
-  concatMap,
-  expand,
-  filter,
-  flatMap,
-  throttleTime,
-} = require("rxjs/operators");
-const {
-  toDateTimeMapper,
-  groupByYear,
-  groupByMonth,
-  groupByDay,
-  groupByAmPm,
-  mergeByGroup,
-  // groupMessagesByAmPm,
-  groupAndMergeByMonth,
-  groupAndMergeByDay,
-  groupMessagesByDay,
-  buildReport,
-  sendGitReport,
-  getCalendarDaysStartingAt,
-} = require("../src/report");
+
+const { getCalendarDaysStartingAt, getCalendarWeeksStartingAt } = require("../src/calendar");
 
 describe("calendar", () => {
   beforeEach(() => {
@@ -43,7 +13,8 @@ describe("calendar", () => {
 
   test("R1: getCalendarDaysStartingAt", () => {
     function go(source$) {
-      return getCalendarDaysStartingAt(source$, "2020-03-01");
+      const initialDate = "2020-03-01";
+      return getCalendarDaysStartingAt(source$, initialDate);
     }
 
     rxTest.run((helpers) => {
@@ -53,10 +24,31 @@ describe("calendar", () => {
 
       const expectedMarble = "ef--g--h|";
       const expectedValues = {
-        e: "01/03/2020",
+        e: "01/03/2020", // initial date in locale fr-fr
         f: "02/03/2020",
         g: "03/03/2020",
         h: "04/03/2020",
+      };
+
+      const received = go(source);
+      expectObservable(received).toBe(expectedMarble, expectedValues);
+    });
+  });
+
+  test("R2: getCalendarWeeksStartingAt", () => {
+    function go(source$) {
+      const initialDate = "2020-01-01";
+      return getCalendarWeeksStartingAt(source$, initialDate);
+    }
+
+    rxTest.run((helpers) => {
+      const { cold, expectObservable } = helpers;
+      const source = cold("   -a--b--c--d--e--f|");
+
+      const expectedMarble = "i---------j------|";
+      const expectedValues = {
+        i: 1, // week 1
+        j: 2,
       };
 
       const received = go(source);
