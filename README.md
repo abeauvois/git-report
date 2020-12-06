@@ -12,20 +12,21 @@ Or
 
 2. send it to yourself via gmail.
 
-## How to contribute
+## How to install
 
 ```bash
+# install
 curl "https://raw.githubusercontent.com/abeauvois/git-report/main/gitreport" -o /usr/local/bin/gitreport && chmod +x /usr/local/bin/gitreport
+# execute
+gitreport console ./csv/gitlog.csv -v
 ```
-
-curl -H "Accept: application/vnd.github.v3.raw" \
- -H "Authorization: token $github_personal_access_token" \
-     "$file_url" 2> err.log > output.json
 
 ## Todos
 
 - [x] split/group each day by AM/ PM
 - [x] make it installable
+- [ ] add year titles (`2020`)
+- [ ] add calendar week titles (`Feb 12-23`) => add a calendar day by day stream
 - [ ] add `fromDate` parameter
 - [ ] add `defaultMessage` prameter when AM or PM empty (ie 'meeting')
 - [ ] add `emailTo` parameter
