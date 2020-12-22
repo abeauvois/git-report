@@ -1,0 +1,435 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`report R1: fromCSVFile 1`] = `
+Object {
+  "contributor": " contributor",
+  "date": " date",
+  "message": " message",
+  "sha": "sha",
+}
+`;
+
+exports[`report R1: fromCSVFile 2`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Fri Nov 13 10:40:39 2020",
+  "message": " \\"m1 13 nov\\"",
+  "sha": "2",
+}
+`;
+
+exports[`report R1: fromCSVFile 3`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Thu Nov 12 16:06:45 2020",
+  "message": " \\"m2 12 nov PM\\"",
+  "sha": "3",
+}
+`;
+
+exports[`report R1: fromCSVFile 4`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Thu Nov 12 10:03:21 2020",
+  "message": " \\"m3 12 nov AM\\"",
+  "sha": "4",
+}
+`;
+
+exports[`report R1: fromCSVFile 5`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Thu Nov 12 11:03:21 2020",
+  "message": " \\"m3 12 nov AM\\"",
+  "sha": "4",
+}
+`;
+
+exports[`report R1: fromCSVFile 6`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Thu Oct 12 16:03:21 2020",
+  "message": " \\"m2 oct\\"",
+  "sha": "5",
+}
+`;
+
+exports[`report R1: fromCSVFile 7`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Thu Sep 12 16:03:21 2020",
+  "message": " \\"m1 sep\\"",
+  "sha": "6",
+}
+`;
+
+exports[`report R1: fromCSVFile 8`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Fri Jan 01 10:40:39 2021",
+  "message": " \\"m1 01 janv 21\\"",
+  "sha": "1",
+}
+`;
+
+exports[`report R1: fromCSVFile 9`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Mon Feb 01 13:40:39 2021",
+  "message": " \\"m1 01 fev 21\\"",
+  "sha": "0",
+}
+`;
+
+exports[`report R1: fromCSVFile 10`] = `
+Object {
+  "contributor": " abeauvois",
+  "date": " Wed Nov 03 13:40:39 2021",
+  "message": " \\"m1 03 nov 21\\"",
+  "sha": "0",
+}
+`;
+
+exports[`report R2.a: commitToTask 1`] = `
+Object {
+  "ampm": "am",
+  "date": "2020/11/13",
+  "day": 13,
+  "dayWeek": 5,
+  "hour": 10,
+  "message": "m1 13 nov",
+  "milliseconds": 1605260439000,
+  "month": 10,
+  "year": 2020,
+}
+`;
+
+exports[`report R2.b: mergeTasksWithCalendar 1`] = `
+Array [
+  Object {
+    "ampm": "pm",
+    "date": "2020/09/12",
+    "day": 12,
+    "dayWeek": 6,
+    "hour": 16,
+    "message": "m1 sep",
+    "milliseconds": 1599919401000,
+    "month": 8,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "am",
+    "date": "2020/10/12",
+    "day": 12,
+    "dayWeek": 1,
+    "hour": 2,
+    "message": "off",
+    "milliseconds": 1602460800000,
+    "month": 9,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "pm",
+    "date": "2020/10/12",
+    "day": 12,
+    "dayWeek": 1,
+    "hour": 16,
+    "message": "m2 oct",
+    "milliseconds": 1602511401000,
+    "month": 9,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "am",
+    "date": "2020/10/13",
+    "day": 13,
+    "dayWeek": 2,
+    "hour": 2,
+    "message": "off",
+    "milliseconds": 1602547200000,
+    "month": 9,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "am",
+    "date": "2020/10/14",
+    "day": 14,
+    "dayWeek": 3,
+    "hour": 2,
+    "message": "off",
+    "milliseconds": 1602633600000,
+    "month": 9,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "am",
+    "date": "2020/11/12",
+    "day": 12,
+    "dayWeek": 4,
+    "hour": 10,
+    "message": "m3 12 nov AM",
+    "milliseconds": 1605171801000,
+    "month": 10,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "am",
+    "date": "2020/11/12",
+    "day": 12,
+    "dayWeek": 4,
+    "hour": 11,
+    "message": "m3 12 nov AM",
+    "milliseconds": 1605175401000,
+    "month": 10,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "pm",
+    "date": "2020/11/12",
+    "day": 12,
+    "dayWeek": 4,
+    "hour": 16,
+    "message": "m2 12 nov PM",
+    "milliseconds": 1605193605000,
+    "month": 10,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "am",
+    "date": "2020/11/13",
+    "day": 13,
+    "dayWeek": 5,
+    "hour": 10,
+    "message": "m1 13 nov",
+    "milliseconds": 1605260439000,
+    "month": 10,
+    "year": 2020,
+  },
+  Object {
+    "ampm": "am",
+    "date": "2021/01/01",
+    "day": 1,
+    "dayWeek": 5,
+    "hour": 10,
+    "message": "m1 01 janv 21",
+    "milliseconds": 1609494039000,
+    "month": 0,
+    "year": 2021,
+  },
+  Object {
+    "ampm": "pm",
+    "date": "2021/02/01",
+    "day": 1,
+    "dayWeek": 1,
+    "hour": 13,
+    "message": "m1 01 fev 21",
+    "milliseconds": 1612183239000,
+    "month": 1,
+    "year": 2021,
+  },
+  Object {
+    "ampm": "pm",
+    "date": "2021/11/03",
+    "day": 3,
+    "dayWeek": 3,
+    "hour": 13,
+    "message": "m1 03 nov 21",
+    "milliseconds": 1635943239000,
+    "month": 10,
+    "year": 2021,
+  },
+]
+`;
+
+exports[`report R3.a: groupByYear 1`] = `
+Array [
+  2020,
+  Array [
+    Object {
+      "ampm": "pm",
+      "date": "2020/09/12",
+      "day": 12,
+      "dayWeek": 6,
+      "hour": 16,
+      "message": "m1 sep",
+      "milliseconds": 1599919401000,
+      "month": 8,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/12",
+      "day": 12,
+      "dayWeek": 1,
+      "hour": 2,
+      "message": "off",
+      "milliseconds": 1602460800000,
+      "month": 9,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "pm",
+      "date": "2020/10/12",
+      "day": 12,
+      "dayWeek": 1,
+      "hour": 16,
+      "message": "m2 oct",
+      "milliseconds": 1602511401000,
+      "month": 9,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/13",
+      "day": 13,
+      "dayWeek": 2,
+      "hour": 2,
+      "message": "off",
+      "milliseconds": 1602547200000,
+      "month": 9,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/14",
+      "day": 14,
+      "dayWeek": 3,
+      "hour": 2,
+      "message": "off",
+      "milliseconds": 1602633600000,
+      "month": 9,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/12",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 10,
+      "message": "m3 12 nov AM",
+      "milliseconds": 1605171801000,
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/12",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 11,
+      "message": "m3 12 nov AM",
+      "milliseconds": 1605175401000,
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "pm",
+      "date": "2020/11/12",
+      "day": 12,
+      "dayWeek": 4,
+      "hour": 16,
+      "message": "m2 12 nov PM",
+      "milliseconds": 1605193605000,
+      "month": 10,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/13",
+      "day": 13,
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 13 nov",
+      "milliseconds": 1605260439000,
+      "month": 10,
+      "year": 2020,
+    },
+  ],
+]
+`;
+
+exports[`report R3.a: groupByYear 2`] = `
+Array [
+  2021,
+  Array [
+    Object {
+      "ampm": "am",
+      "date": "2021/01/01",
+      "day": 1,
+      "dayWeek": 5,
+      "hour": 10,
+      "message": "m1 01 janv 21",
+      "milliseconds": 1609494039000,
+      "month": 0,
+      "year": 2021,
+    },
+    Object {
+      "ampm": "pm",
+      "date": "2021/02/01",
+      "day": 1,
+      "dayWeek": 1,
+      "hour": 13,
+      "message": "m1 01 fev 21",
+      "milliseconds": 1612183239000,
+      "month": 1,
+      "year": 2021,
+    },
+    Object {
+      "ampm": "pm",
+      "date": "2021/11/03",
+      "day": 3,
+      "dayWeek": 3,
+      "hour": 13,
+      "message": "m1 03 nov 21",
+      "milliseconds": 1635943239000,
+      "month": 10,
+      "year": 2021,
+    },
+  ],
+]
+`;
+
+exports[`report R5: groupMessagesByDay 1`] = `
+Object {
+  "day": 12,
+  "dayWeek": 6,
+  "messagesAm": " off, m3 12 nov AM, m3 12 nov AM",
+  "messagesPm": " m1 sep, m2 oct, m2 12 nov PM",
+}
+`;
+
+exports[`report R5: groupMessagesByDay 2`] = `
+Object {
+  "day": 13,
+  "dayWeek": 2,
+  "messagesAm": " off, m1 13 nov",
+  "messagesPm": "",
+}
+`;
+
+exports[`report R5: groupMessagesByDay 3`] = `
+Object {
+  "day": 14,
+  "dayWeek": 3,
+  "messagesAm": " off",
+  "messagesPm": "",
+}
+`;
+
+exports[`report R5: groupMessagesByDay 4`] = `
+Object {
+  "day": 1,
+  "dayWeek": 5,
+  "messagesAm": " m1 01 janv 21",
+  "messagesPm": " m1 01 fev 21",
+}
+`;
+
+exports[`report R5: groupMessagesByDay 5`] = `
+Object {
+  "day": 3,
+  "dayWeek": 3,
+  "messagesAm": "",
+  "messagesPm": " m1 03 nov 21",
+}
+`;

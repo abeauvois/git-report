@@ -52,10 +52,9 @@ const getWeek = function (date, dowOffset) {
   return weeknum;
 };
 
-const formatDateLocale = () =>
-  map((date) => {
-    return date.toLocaleDateString("fr-fr", { timeZone: "Europe/Paris" });
-  });
+const toYYYYMMDD = (date) => date.toLocaleDateString("en-ZA");
+
+const formatDateLocale = () => map(toYYYYMMDD);
 
 const getCalendarDaysStartingAt = (source$, startDate) => {
   const date = new Date(startDate);
@@ -77,12 +76,6 @@ const getCalendarWeeksStartingAt = (source$, startDate) => {
       return new Date(newDate);
     }),
     map((date) => {
-      //   console.log(
-      //     "getWeek(date)",
-      //     toDayName(date.getDay()),
-      //     date.toLocaleString("fr-fr", { timeZone: "Europe/Paris" }),
-      //     getWeek(date)
-      //   );
       return getWeek(date);
     }),
     distinctUntilChanged()
@@ -90,6 +83,7 @@ const getCalendarWeeksStartingAt = (source$, startDate) => {
 };
 
 module.exports = {
+  toYYYYMMDD,
   getCalendarDaysStartingAt,
   getCalendarWeeksStartingAt,
   formatDateLocale,
