@@ -1,4 +1,4 @@
-const { from, of, zip, pipe, combineLatest, interval, concat } = require("rxjs");
+const { from, of, iif, zip, pipe, combineLatest, interval, concat } = require("rxjs");
 const {
   map,
   skip,
@@ -10,20 +10,18 @@ const {
   take,
   scan,
   last,
-  // take,
-  // tap,
-  // startWith,
-  // scan,
-  // distinctUntilChanged,
+  takeLast,
 } = require("rxjs/operators");
 
-// const { sendMail } = require("./email");
 const { consoleTemplate } = require("./templates");
 const { fromCSVFile } = require("./fromCSVFile");
-const { toYYYYMMDD, getCalendarDaysStartingAt } = require("./calendar");
+const { toYYYYMMDD, getCalendarDaysStartingAt, getWeek } = require("./calendar");
+
+const { TasksManager } = require("./TasksManager.js");
 
 const groupByYear = groupBy((r) => r.year);
 const groupByMonth = groupBy((r) => r.month);
+const groupByWeek = groupBy((r) => r.week);
 const groupByDay = groupBy((r) => r.day);
 const groupByAmPm = groupBy((r) => r.ampm);
 const mergeByGroup = mergeMap((group) => zip(of(group.key), group.pipe(toArray())));
@@ -34,12 +32,13 @@ const dateToTaskMapper = (d, message = DEFAULT_MESSAGE) => {
   return {
     date: toYYYYMMDD(d),
     milliseconds: d.valueOf(),
-    dayWeek: d.getDay(),
+    week: getWeek(d),
+    dayWeek: d.getDay(), // Sunday - Saturday : 0 - 6
     ampm: d.getHours() <= 12 ? "am" : "pm",
     hour: d.getHours(),
-    day: d.getDate(),
-    month: d.getMonth(),
-    year: d.getFullYear(),
+    day: d.getDate(), // 1 to 31
+    month: d.getMonth(), // 0 to 11
+    year: d.getFullYear(), // YYYY
     message,
   };
 };
@@ -65,49 +64,69 @@ function compareValues(key, order = "asc") {
     } else if (varA < varB) {
       comparison = -1;
     }
-    return order === "desc" ? comparison * -1 : comparison;
+    return order === "asc" ? comparison : comparison * -1;
   };
 }
 
-const toMessagesMapper = (day) => ([_, tasks]) => ({
-  day,
+function taskReducer(ampm, emptyKey) {
+  return (acc, curr) => {
+    if (curr.ampm === ampm) return acc;
+    if (curr.message.includes("Merge branch")) return acc;
+    if (curr.message.includes("Merge remote")) return acc;
+    if (curr.message.includes("tmp")) return acc;
+    if (acc && curr.message.includes(emptyKey)) return acc;
+
+    const accEmptyKey = acc.includes(emptyKey);
+
+    let result;
+    if (accEmptyKey && curr.message) {
+      result = `${curr.message}`;
+    } else {
+      result = `${acc ? acc + "," : acc}${curr.message}`;
+    }
+
+    return result;
+  };
+}
+
+const toMessagesMapper = (day, emptyKey = "off") => ([_, tasks]) => ({
+  date: tasks[0].date,
+  day: tasks[0].day,
+  week: tasks[0].week,
+  month: tasks[0].month,
+  year: tasks[0].year,
   dayWeek: tasks[0].dayWeek,
-  messagesAm: tasks.reduce((acc, curr) => {
-    if (curr.ampm === "pm") return acc;
-    if (curr.message.includes("Merge branch")) return acc;
-    if (curr.message.includes("Merge remote")) return acc;
-    if (curr.message.includes("tmp")) return acc;
-
-    return `${acc ? acc + "," : acc} ${curr.message}`;
-  }, ""),
-  messagesPm: tasks.reduce((acc, curr) => {
-    if (curr.ampm === "am") return acc;
-    if (curr.message.includes("Merge branch")) return acc;
-    if (curr.message.includes("Merge remote")) return acc;
-    if (curr.message.includes("tmp")) return acc;
-
-    return `${acc ? acc + "," : acc} ${curr.message}`;
-  }, ""),
+  messagesAm: tasks.reduce(taskReducer("pm", emptyKey), emptyKey),
+  messagesPm: tasks.reduce(taskReducer("am", emptyKey), emptyKey),
 });
 
-const mergeTasksWithCalendar = (filename, startDate = "2020-10-12") => {
-  const source$ = interval(100);
+const getTask$ = (filename) =>
+  fromCSVFile(filename).pipe(
+    skip(1),
+    map((task) => commitToTask(task)),
+    toArray(),
+    map((received) => received.sort(compareValues("milliseconds")))
+  );
 
-  const getDay$ = (startDay) =>
-    getCalendarDaysStartingAt(source$, startDay).pipe(
-      take(3),
-      map((day, index) => dateToTaskMapper(day)),
+const mergeTasksWithCalendar = (task$, lastDays) => {
+  const source$ = interval(10);
+
+  const getDay$ = (startDate, days) =>
+    getCalendarDaysStartingAt(source$, startDate).pipe(
+      take(days),
+      map((day) => dateToTaskMapper(day)),
+      takeLast(lastDays || days),
       toArray()
     );
 
-  const getTask$ = fromCSVFile(filename).pipe(
-    skip(1),
-    map((task, index) => commitToTask(task)),
-    toArray()
-  );
-
-  return getTask$.pipe(
-    flatMap((tasks) => concat(of(tasks), getDay$(startDate))),
+  return task$.pipe(
+    flatMap((tm) => {
+      const { firstTaskDate } = tm.getBounds();
+      const tasks = tm.getState().items;
+      const numDays = tm.getLength();
+      const calendarDays = getDay$(firstTaskDate, numDays);
+      return concat(from(tasks).pipe(takeLast(lastDays || numDays)), from(calendarDays));
+    }),
     scan((acc, curr) => acc.concat(curr), []),
     last(),
     map((received) => received.sort(compareValues("milliseconds")))
@@ -122,40 +141,43 @@ const aggregateDiffs = (task$, day$) =>
 
 const groupAndMergeByYear = pipe(groupByYear, mergeByGroup);
 const groupAndMergeByMonth = pipe(groupByMonth, mergeByGroup);
+const groupAndMergeByWeek = pipe(groupByWeek, mergeByGroup);
 const groupAndMergeByDay = pipe(groupByDay, mergeByGroup);
 const groupMessagesByDay = ([month, tasks]) => from(tasks).pipe(groupByDay, mergeByGroup, map(toMessagesMapper(month)));
-// const groupMessagesByAmPm = ([day, tasks]) => from(tasks).pipe(groupByAmPm, mergeByGroup, map(toMessagesMapper(day)));
 
-const asArray = (group) => group.pipe(toArray());
-const groupMapper = (group) => zip(of(group.key), asArray(group));
-const mergeGroup = mergeMap(groupMapper);
+const buildReport = ({ report = "", filename, lastDays }) => {
+  const task$ = getTask$(filename).pipe(
+    flatMap((tasks) => {
+      const tm = TasksManager(tasks);
+      return of(tm);
+    })
+  );
 
-const buildReport = ({ report = "", filename, limit = 100 }) => {
-  const source$ = fromCSVFile(filename).pipe(skip(1), map(commitToTask));
+  const source$ = mergeTasksWithCalendar(task$, lastDays).pipe(
+    flatMap((tasks) => {
+      return from(tasks);
+    }),
+    groupAndMergeByDay,
+    mergeMap(groupMessagesByDay),
+    // filter((day) => day.getDay() !== 0 && day.getDay() !== 6), // remove Sunday & Saturday
+    groupAndMergeByYear,
+    flatMap(([year, tasks]) => combineLatest([of(year), from(tasks).pipe(groupAndMergeByMonth)])),
+    flatMap(([year, [month, tasks]]) =>
+      combineLatest([of(year), combineLatest([of(month), from(tasks).pipe(groupAndMergeByWeek)])])
+    )
+  );
 
-  const sourceByYear$ = source$.pipe(groupByYear, mergeGroup);
-  const sourceByMonth$ = (list) => from(list).pipe(groupByMonth, mergeGroup);
-  const sourceByDay$ = (list) => from(list).pipe(groupByDay, mergeGroup);
   return new Promise((resolve, reject) => {
-    sourceByYear$
-      .pipe(
-        filter(([_, list]) => Boolean(list)), // remove undefined list
-        flatMap(([year, list]) => combineLatest([of(year), sourceByMonth$(list)])),
-        flatMap(([year, [month, list]]) => combineLatest([of(year), combineLatest([of(month), sourceByDay$(list)])])),
-        flatMap(([year, [month, [day, list]]]) =>
-          combineLatest([of(year), combineLatest([of(month), groupMessagesByDay([day, list])])])
-        )
-      )
-      .subscribe(
-        (result) => (report = consoleTemplate(report)(result)),
-        (error) => console.log("errror:", error) || reject(error),
-        () => resolve(report)
-      );
+    source$.subscribe(
+      (result) => (report = consoleTemplate(report)(result)),
+      (error) => console.log("errror:", error) || reject(error),
+      () => console.log(report) || resolve(report)
+    );
   });
 };
 
-function sendGitReport({ filename, channel = "email", limit = 100 }) {
-  return buildReport({ filename, limit }).then((received) => {
+function sendReport({ filename, channel = "email" }) {
+  return buildReport({ filename }).then((received) => {
     if (channel === "email") {
       sendMail({ text: received });
       return received;
@@ -167,6 +189,7 @@ function sendGitReport({ filename, channel = "email", limit = 100 }) {
 }
 
 module.exports = {
+  getTask$,
   compareValues,
   aggregateDiffs,
   commitToTask,
@@ -179,9 +202,9 @@ module.exports = {
   mergeByGroup,
   groupAndMergeByYear,
   groupAndMergeByMonth,
+  groupAndMergeByWeek,
   groupAndMergeByDay,
   groupMessagesByDay,
-  // groupMessagesByAmPm,
   buildReport,
-  sendGitReport,
+  sendReport,
 };

@@ -1,37 +1,40 @@
 const c = require("chalk");
 
-const toDayName = (day) => {
-  var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return dayNames[day];
-};
-
-const toMonthName = (month) => {
-  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Oct", "Nov", "Dec"];
-  return monthNames[month];
-};
+const { toDayName, toMonthName } = require("../src/calendar");
 
 const monthTemplate = (month, display = "html") =>
-  display !== "html" ? `${c.blue(toMonthName(month - 1))}` : `<strong>${month - 1}, ${toMonthName(month - 1)}</strong>`;
+  display !== "html" ? `${c.blue(toMonthName(month))}` : `<strong>${month}, ${toMonthName(month)}</strong>`;
 
 const dayTemplate = (day, display = "html") => (display !== "html" ? c.yellow(day.day) : `<strong>${day.day}</strong>`);
 
 let lastMonth = null;
+let lastWeek = null;
 
 const consoleTemplate = (template) => (result) => {
-  const [year, [month, commit]] = result;
+  const [year, [month, [week, tasks]]] = result;
 
-  const initialValue = lastMonth === null || month !== lastMonth ? `${monthTemplate(month, "console")} ${year}\n` : "";
+  const newMonth = lastMonth === null || month !== lastMonth ? `${year}\n` : "";
   if (lastMonth === null) {
     lastMonth = month;
+    lastWeek = null;
   }
 
-  template = template ? (template += initialValue) : initialValue;
+  const newWeek = lastWeek === null || week !== lastWeek ? `${monthTemplate(month, "console")}, Week ${week}\n` : "";
+  if (lastWeek === null) {
+    lastWeek = week;
+  }
 
-  template += `${c.yellow(toDayName(commit.dayWeek))}, ${c.yellow(commit.day)}\n`;
-  template += `AM: ${c.yellow(commit.messagesAm)}\n`;
-  template += `PM: ${c.yellow(commit.messagesPm)}\n`;
+  template = template ? (template += newMonth) : newMonth;
+  template += newWeek;
 
-  template += "\n";
+  tasks.forEach((commit) => {
+    template += `${c.yellow(toDayName(commit.dayWeek))}, ${c.yellow(commit.day)}\n`;
+    template += `AM: ${c.yellow(commit.messagesAm)}\n`;
+    template += `PM: ${c.yellow(commit.messagesPm)}\n`;
+
+    template += "\n";
+  });
+
   return template;
 };
 

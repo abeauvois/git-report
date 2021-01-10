@@ -3,7 +3,7 @@
 require("dotenv").config();
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
-const { sendGitReport } = require("./src/report");
+const { sendReport } = require("./src/report");
 
 yargs(hideBin(process.argv))
   .command(
@@ -17,7 +17,7 @@ yargs(hideBin(process.argv))
     },
     (argv) => {
       if (argv.verbose) console.info(`Report from :${argv.filename}`);
-      sendGitReport({ filename: argv.filename, channel: "console" });
+      sendReport({ filename: argv.filename, channel: "console" });
     }
   )
   .command(
@@ -31,7 +31,7 @@ yargs(hideBin(process.argv))
     },
     (argv) => {
       if (argv.verbose) console.info(`Report from :${argv.filename} sent to: ${process.env.GMAIL_EMAIL}`);
-      sendGitReport({ filename: argv.filename });
+      sendReport({ filename: argv.filename });
     }
   )
   .option("help", {
@@ -45,4 +45,4 @@ yargs(hideBin(process.argv))
     description: "Run with verbose logging",
   }).argv;
 
-// sendGitReport({ filename: "./csv/real-world-git-log.csv" });
+// sendReport({ filename: "./csv/real-world-git-log.csv" });

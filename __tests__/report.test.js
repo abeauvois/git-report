@@ -1,27 +1,31 @@
-const { from, of, zip, combineLatest } = require("rxjs");
-const { toArray, skip, map, take, mergeMap, filter, flatMap } = require("rxjs/operators");
+const { from, of, combineLatest } = require("rxjs");
+const { toArray, skip, map, take, mergeMap, flatMap, tap } = require("rxjs/operators");
 
 const { TestScheduler } = require("rxjs/testing");
 
 const { fromCSVFile } = require("../src/fromCSVFile");
+const { TasksManager } = require("../src/TasksManager");
+
 const {
-  compareValues,
+  getTask$,
   aggregateDiffs,
-  commitToTask,
   mergeTasksWithCalendar,
-  groupByYear,
   groupAndMergeByYear,
-  groupByMonth,
-  groupByDay,
+  groupAndMergeByMonth,
   groupAndMergeByDay,
   groupMessagesByDay,
   buildReport,
-  sendGitReport,
+  sendReport,
+  groupAndMergeByWeek,
+  getBounds,
 } = require("../src/report");
 
 describe("report", () => {
   let rxTest;
   const filename = "./__tests__/test_file.csv";
+  const filenameR2 = "./__tests__/test_file_report_R2_b.csv";
+  const filenameR3a = "./__tests__/test_file_report_R3_a.csv";
+  const filenameR6b = "./__tests__/test_file_report_R6_b.csv";
 
   beforeEach(() => {
     rxTest = new TestScheduler((actual, expected) => {
@@ -29,8 +33,20 @@ describe("report", () => {
     });
   });
 
-  test.only("R1: fromCSVFile", (done) => {
-    fromCSVFile(filename).subscribe(
+  test("R1.a: fromCSVFile", (done) => {
+    fromCSVFile(filename)
+      .pipe(take(2))
+      .subscribe(
+        (received) => {
+          expect(received).toMatchSnapshot();
+        },
+        (e) => console.log("Errroor", e),
+        () => done()
+      );
+  });
+
+  test("R1.b: getTask$", (done) => {
+    getTask$(filename).subscribe(
       (received) => {
         expect(received).toMatchSnapshot();
       },
@@ -39,34 +55,66 @@ describe("report", () => {
     );
   });
 
-  test.only("R2.a: commitToTask", (done) => {
-    fromCSVFile(filename)
-      .pipe(skip(1), take(1), map(commitToTask))
-      .subscribe(
-        (received) => {
-          expect(received).toMatchSnapshot();
-        },
-        (e) => console.log("Errroor", e),
-        () => {
-          done();
-        }
-      );
-  });
+  test("R2.a: mergeTasksWithCalendar should start on firstTaskDate", (done) => {
+    const firstTaskDate = "2020/11/12";
+    const lastTaskDate = "2020/11/13";
 
-  test.only("R2.b: mergeTasksWithCalendar", (done) => {
-    mergeTasksWithCalendar(filename, "2020-10-12").subscribe(
+    const task$ = getTask$(filenameR2).pipe(
+      flatMap((tasks) => {
+        const tm = TasksManager(tasks);
+        return of(tm);
+      })
+    );
+
+    mergeTasksWithCalendar(task$).subscribe(
       (received) => {
-        expect(received).toMatchSnapshot();
+        expect(received[0].date).toEqual(firstTaskDate);
+        expect(received[0].message).toEqual("off");
+
+        expect(received.length).toEqual(4);
+        expect(received[received.length - 1].date).toEqual(lastTaskDate);
+        expect(received[received.length - 1].message).toEqual("m1 13 nov");
       },
       (e) => console.log("Errroor", e),
-      () => {
-        done();
-      }
+      () => done()
     );
   });
 
-  test.only("R3.a: groupByYear", (done) => {
-    mergeTasksWithCalendar(filename, "2020-10-12")
+  test("R2.b: mergeTasksWithCalendar should start 1 day before lastTaskDate", (done) => {
+    const lastTaskDate = "2020/11/13";
+
+    const takeLast = 1;
+
+    const task$ = getTask$(filenameR2).pipe(
+      flatMap((tasks) => {
+        const tm = TasksManager(tasks);
+        return of(tm);
+      })
+    );
+
+    mergeTasksWithCalendar(task$, takeLast).subscribe(
+      (received) => {
+        expect(received[0].date).toEqual(lastTaskDate);
+        expect(received[0].message).toEqual("off");
+
+        expect(received.length).toEqual(2);
+        expect(received[received.length - 1].date).toEqual(lastTaskDate);
+        expect(received[received.length - 1].message).toEqual("m1 13 nov");
+      },
+      (e) => console.log("Errroor", e),
+      () => done()
+    );
+  });
+
+  test("R3.a: groupByYear", (done) => {
+    const task$ = getTask$(filenameR2).pipe(
+      flatMap((tasks) => {
+        const tm = TasksManager(tasks);
+        return of(tm);
+      })
+    );
+
+    mergeTasksWithCalendar(task$)
       .pipe(
         flatMap((tasks) => {
           return from(tasks);
@@ -78,13 +126,11 @@ describe("report", () => {
           expect(received).toMatchSnapshot();
         },
         (e) => console.log("Errroor", e),
-        () => {
-          done();
-        }
+        () => done()
       );
   });
 
-  test.only("R3.b: aggregateDiffs ", () => {
+  test("R3.b: aggregateDiffs ", () => {
     rxTest.run((helpers) => {
       const { cold, expectObservable } = helpers;
 
@@ -146,91 +192,78 @@ describe("report", () => {
     });
   });
 
-  test("R3.c: groupByYear & mergeByGroup & aggregateDiffs", (done) => {
-    mergeTasksWithCalendar(filename, "2020-10-12")
+  test("R4: groupMessagesByDay", (done) => {
+    const task$ = getTask$(filenameR2).pipe(
+      flatMap((tasks) => {
+        const tm = TasksManager(tasks);
+        return of(tm);
+      })
+    );
+
+    mergeTasksWithCalendar(task$)
       .pipe(
         flatMap((tasks) => {
           return from(tasks);
         }),
-        groupAndMergeByYear,
-        flatMap(([year, list]) => {
-          const startDay = `${year}-01-01`;
-          const day$ = getDay$(startDay);
-          const task$ = from(list.sort(compareValues("milliseconds")));
-
-          return combineLatest([of(year), aggregateDiffs(task$, day$)]);
-        })
+        groupAndMergeByDay,
+        mergeMap(groupMessagesByDay),
+        toArray()
       )
       .subscribe(
         (received) => {
           expect(received).toMatchSnapshot();
-          // done();
         },
         (e) => console.log("Errroor", e),
         () => done()
       );
   });
 
-  test.only("R5: groupMessagesByDay", (done) => {
-    mergeTasksWithCalendar(filename, "2020-10-12")
-      .pipe(
-        flatMap((tasks) => {
-          return from(tasks);
-        }),
-        groupAndMergeByDay,
-        mergeMap(groupMessagesByDay)
+  test("R5: groupByYear", (done) => {
+    const task$ = getTask$(filenameR3a).pipe(
+      flatMap((tasks) => {
+        const tm = TasksManager(tasks);
+        return of(tm);
+      })
+    );
+
+    const source$ = mergeTasksWithCalendar(task$).pipe(
+      flatMap((tasks) => {
+        return from(tasks);
+      }),
+      groupAndMergeByDay,
+      mergeMap(groupMessagesByDay),
+      groupAndMergeByYear,
+      flatMap(([year, tasks]) => combineLatest([of(year), from(tasks).pipe(groupAndMergeByMonth)])),
+      flatMap(([year, [month, tasks]]) =>
+        combineLatest([of(year), combineLatest([of(month), from(tasks).pipe(groupAndMergeByWeek)])])
       )
-      .subscribe(
-        (received) => {
-          expect(received).toMatchSnapshot();
-        },
-        (e) => console.log("Errroor", e),
-        () => {
-          done();
-        }
-      );
+    );
+
+    source$.pipe(tap((t) => console.log("t:", t))).subscribe(
+      (received) => {
+        expect(received).toMatchSnapshot();
+      },
+      (e) => console.log("Errroor", e),
+      () => done()
+    );
   });
 
-  test("R6: groupByMonthByDay", (done) => {
-    const asArray = (group) => group.pipe(toArray());
-    const groupMapper = (group) => zip(of(group.key), asArray(group));
-    const mergeGroup = mergeMap(groupMapper);
-
-    const source$ = fromCSVFile(filename).pipe(skip(1), map(commitToTask));
-
-    const sourceByYear$ = source$.pipe(groupByYear, mergeGroup);
-    const sourceByMonth$ = (list) => from(list).pipe(groupByMonth, mergeGroup);
-    const sourceByDay$ = (list) => from(list).pipe(groupByDay, mergeGroup);
-
-    sourceByYear$
-      .pipe(
-        // eslint-disable-next-line no-unused-vars
-        filter(([_, list]) => Boolean(list)), // remove undefined list
-        flatMap(([year, list]) => combineLatest([of(year), sourceByMonth$(list)])),
-        flatMap(([year, [month, list]]) => combineLatest([of(year), combineLatest([of(month), sourceByDay$(list)])])),
-        flatMap(([year, [month, [day, list]]]) =>
-          combineLatest([of(year), combineLatest([of(month), groupMessagesByDay([day, list])])])
-        )
-        // tap((t) => console.log("t:", t))
-      )
-      .subscribe(
-        (received) => {
-          expect(received).toMatchSnapshot();
-          done();
-        },
-        (e) => console.log("Errroor", e)
-      );
-  });
-
-  test("R7: buildReport", (done) => {
-    buildReport({ filename }).then((received) => {
+  test("R6.a: buildReport", (done) => {
+    buildReport({ filename: filenameR6b }).then((received) => {
       expect(received).toMatchSnapshot();
       done();
     });
   });
 
-  test("R8: sendGitReport to console", (done) => {
-    sendGitReport({ filename: filename, channel: "console" }).then((received) => {
+  test("R6.b: buildReport last 2 days", (done) => {
+    buildReport({ filename: filenameR6b, lastDays: 2 }).then((received) => {
+      expect(received).toMatchSnapshot();
+      done();
+    });
+  });
+
+  test.skip("R8: sendReport to console", (done) => {
+    sendReport({ filename: filenameR3a, channel: "console" }).then((received) => {
       expect(received).toMatchSnapshot();
       done();
     });

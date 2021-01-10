@@ -1,20 +1,4 @@
-const { from, of, zip, pipe, combineLatest, interval } = require("rxjs");
-const {
-  map,
-  startWith,
-  scan,
-  distinctUntilChanged,
-  //     take,
-  //   skip,
-  //   groupBy,
-  //   mergeMap,
-  //   toArray,
-  //   filter,
-  //   flatMap,
-  //   tap,
-} = require("rxjs/operators");
-
-// const { toDayName } = require("./templates");
+const { map, startWith, scan, distinctUntilChanged } = require("rxjs/operators");
 
 /**
  * Returns the week number for this date.  dowOffset is the day of week the week
@@ -52,9 +36,29 @@ const getWeek = function (date, dowOffset) {
   return weeknum;
 };
 
+const toDayName = (day) => {
+  var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return dayNames[day];
+};
+
+const toMonthName = (month) => {
+  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  return monthNames[month];
+};
+
 const toYYYYMMDD = (date) => date.toLocaleDateString("en-ZA");
 
 const formatDateLocale = () => map(toYYYYMMDD);
+
+const dateDiffDays = (date1, date2) => {
+  const dt1 = new Date(date1);
+  const dt2 = new Date(date2);
+  return Math.floor(
+    (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+      Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+      (1000 * 60 * 60 * 24)
+  );
+};
 
 const getCalendarDaysStartingAt = (source$, startDate) => {
   const date = new Date(startDate);
@@ -84,6 +88,10 @@ const getCalendarWeeksStartingAt = (source$, startDate) => {
 
 module.exports = {
   toYYYYMMDD,
+  toDayName,
+  toMonthName,
+  dateDiffDays,
+  getWeek,
   getCalendarDaysStartingAt,
   getCalendarWeeksStartingAt,
   formatDateLocale,

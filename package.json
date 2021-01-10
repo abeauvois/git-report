@@ -1,12 +1,15 @@
 {
   "name": "gitreport",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Creates a git log report grouped by month and by day and send it by email",
   "main": "gitreport.js",
   "scripts": {
+    "makelog": "echo sha, contributor, date, message > ./csv/gitlog.csv && git log --date=local --pretty=format:'%h, %an, %ad, \"%s\"' | egrep abeauvois >> ./csv/gitlog.csv",
     "start": "node gitReport.js",
     "watch": "nodemon gitReport.js",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "build": "pkg . -t node10-macos-x64 -o ./bin/gitreport && yarn exe",
+    "exe": "./bin/gitreport console ./csv/gitlog.csv -v"
   },
   "jest": {
     "verbose": true

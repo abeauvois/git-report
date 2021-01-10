@@ -16,7 +16,7 @@ Or
 
 ```bash
 # install
-curl "https://raw.githubusercontent.com/abeauvois/git-report/main/gitreport" -o /usr/local/bin/gitreport && chmod +x /usr/local/bin/gitreport
+curl "https://raw.githubusercontent.com/abeauvois/git-report/main/bin/gitreport" -o /usr/local/bin/gitreport && chmod +x /usr/local/bin/gitreport
 # execute
 gitreport console ./csv/gitlog.csv -v
 ```
@@ -25,10 +25,12 @@ gitreport console ./csv/gitlog.csv -v
 
 - [x] split/group each day by AM/ PM
 - [x] make it installable
-- [ ] add year titles (`2020`)
-- [ ] add calendar week titles (`Feb 12-23`) => add a calendar day by day stream
+- [x] add year titles (`2020`) => remove month
+- [x] add calendar week titles (`week 43`) => add a calendar day by day stream
+- [ ] add calendar week titles (`Feb 12-23`) => find first and last day for a given week
 - [ ] add `fromDate` parameter
-- [ ] add `defaultMessage` prameter when AM or PM empty (ie 'meeting')
+- [ ] add `defaultMessage` parameter when AM or PM empty (ie 'meeting')
+- [ ] add `makelog` command to exctract the `git log` csv file (from current branch)
 - [ ] add `emailTo` parameter
 - [ ] accept formatting options (ie "Day 5:" => "Thu 5, Nov 2020:")
 
@@ -55,13 +57,13 @@ npm i
 yarn global add pkg
 
 # run the compiler for your architecture (see details here: https://github.com/vercel/pkg)
- pkg . -t node10-macos-x64 -o ./bin
+ yarn build
 ```
 
 ### How to execute
 
 ```bash
-./gitreport console ./csv/gitlog.csv -v
+ yarn exec
 
 OR
 # copy all files in ./bin
