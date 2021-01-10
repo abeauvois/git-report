@@ -10,15 +10,15 @@ Array [
   },
   Object {
     "contributor": " abeauvois",
-    "date": " Fri Nov 13 10:40:39 2020",
-    "message": " \\"m1 13 nov\\"",
-    "sha": "2",
-  },
-  Object {
-    "contributor": " abeauvois",
     "date": " Thu Nov 12 16:06:45 2020",
     "message": " \\"m2 12 nov PM\\"",
     "sha": "3",
+  },
+  Object {
+    "contributor": " abeauvois",
+    "date": " Fri Nov 13 10:40:39 2020",
+    "message": " \\"m1 13 nov\\"",
+    "sha": "2",
   },
   Object {
     "contributor": " abeauvois",

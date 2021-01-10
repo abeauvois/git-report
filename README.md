@@ -27,6 +27,7 @@ gitreport console ./csv/gitlog.csv -v
 - [x] make it installable
 - [x] add year titles (`2020`) => remove month
 - [x] add calendar week titles (`week 43`) => add a calendar day by day stream
+- [ ] add `lastdays` parameter => report only last N days
 - [ ] add calendar week titles (`Feb 12-23`) => find first and last day for a given week
 - [ ] add `fromDate` parameter
 - [ ] add `defaultMessage` parameter when AM or PM empty (ie 'meeting')
