@@ -3,21 +3,29 @@
 require("dotenv").config();
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
-const { sendReport } = require("./src/report");
+const { buildReport, sendReport } = require("./src/report");
 
 yargs(hideBin(process.argv))
   .command(
-    "console [filename]",
+    "console [filename] [lastdays]",
     "Display report in the terminal",
     (yargs) => {
-      yargs.positional("filename", {
-        describe: "CSV filename ie: ./csv/real-world-git-log.csv",
-        default: "./csv/real-world-git-log.csv",
-      });
+      yargs
+        .positional("filename", {
+          describe: "CSV filename ie: ./csv/real-world-git-log.csv",
+          default: "./csv/real-world-git-log.csv",
+        })
+        .positional("lastdays", {
+          describe: "Only the last `lastdays` (defaul: 60)",
+          type: "num",
+          default: 60,
+        });
     },
     (argv) => {
-      if (argv.verbose) console.info(`Report from :${argv.filename}`);
-      sendReport({ filename: argv.filename, channel: "console" });
+      // if (argv.verbose) console.info(`Report from :${argv.filename}`);
+      console.info(`Report from :${argv.filename}`);
+      console.info(`Args :${JSON.stringify(argv)}`);
+      buildReport({ filename: argv.filename, channel: "console", lastdays: argv.lastdays });
     }
   )
   .command(
@@ -44,5 +52,3 @@ yargs(hideBin(process.argv))
     type: "boolean",
     description: "Run with verbose logging",
   }).argv;
-
-// sendReport({ filename: "./csv/real-world-git-log.csv" });

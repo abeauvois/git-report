@@ -1,4 +1,4 @@
-const { from, of, iif, zip, pipe, combineLatest, interval, concat } = require("rxjs");
+const { from, of, zip, pipe, combineLatest, interval, concat } = require("rxjs");
 const {
   map,
   skip,
@@ -108,14 +108,14 @@ const getTask$ = (filename) =>
     map((received) => received.sort(compareValues("milliseconds")))
   );
 
-const mergeTasksWithCalendar = (task$, lastDays) => {
+const mergeTasksWithCalendar = (task$, lastdays) => {
   const source$ = interval(10);
 
   const getDay$ = (startDate, days) =>
     getCalendarDaysStartingAt(source$, startDate).pipe(
       take(days),
       map((day) => dateToTaskMapper(day)),
-      takeLast(lastDays || days),
+      takeLast(lastdays || days),
       toArray()
     );
 
@@ -125,7 +125,9 @@ const mergeTasksWithCalendar = (task$, lastDays) => {
       const tasks = tm.getState().items;
       const numDays = tm.getLength();
       const calendarDays = getDay$(firstTaskDate, numDays);
-      return concat(from(tasks).pipe(takeLast(lastDays || numDays)), from(calendarDays));
+      console.log("Last days:", lastdays);
+      tm.log();
+      return concat(from(tasks).pipe(takeLast(lastdays || numDays)), from(calendarDays));
     }),
     scan((acc, curr) => acc.concat(curr), []),
     last(),
@@ -145,7 +147,7 @@ const groupAndMergeByWeek = pipe(groupByWeek, mergeByGroup);
 const groupAndMergeByDay = pipe(groupByDay, mergeByGroup);
 const groupMessagesByDay = ([month, tasks]) => from(tasks).pipe(groupByDay, mergeByGroup, map(toMessagesMapper(month)));
 
-const buildReport = ({ report = "", filename, lastDays }) => {
+const buildReport = ({ report = "", filename, lastdays }) => {
   const task$ = getTask$(filename).pipe(
     flatMap((tasks) => {
       const tm = TasksManager(tasks);
@@ -153,7 +155,7 @@ const buildReport = ({ report = "", filename, lastDays }) => {
     })
   );
 
-  const source$ = mergeTasksWithCalendar(task$, lastDays).pipe(
+  const source$ = mergeTasksWithCalendar(task$, lastdays).pipe(
     flatMap((tasks) => {
       return from(tasks);
     }),

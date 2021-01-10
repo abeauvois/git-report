@@ -473,7 +473,9 @@ PM: [33moff[39m
 `;
 
 exports[`report R6.b: buildReport last 2 days 1`] = `
-"[34mDec[39m, Week 53
+"[31m2020[39m
+[34mDec[39m
+Week 53
 [33mTue[39m, [33m29[39m
 AM: [33moff[39m
 PM: [33mmsg1 29 dec 2020[39m
@@ -482,8 +484,9 @@ PM: [33mmsg1 29 dec 2020[39m
 AM: [33moff[39m
 PM: [33moff[39m
 
-2021
-[34mJan[39m, Week 0
+[31m2021[39m
+[34mJan[39m
+Week 0
 [33mFri[39m, [33m1[39m
 AM: [33mmsg1 01 jan 2021[39m
 PM: [33moff[39m

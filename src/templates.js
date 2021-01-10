@@ -2,29 +2,40 @@ const c = require("chalk");
 
 const { toDayName, toMonthName } = require("../src/calendar");
 
+const yearTemplate = (year, display = "html") =>
+  display !== "html" ? `${c.red(year)}` : `<strong>${year}, ${year}</strong>`;
+
 const monthTemplate = (month, display = "html") =>
   display !== "html" ? `${c.blue(toMonthName(month))}` : `<strong>${month}, ${toMonthName(month)}</strong>`;
 
 const dayTemplate = (day, display = "html") => (display !== "html" ? c.yellow(day.day) : `<strong>${day.day}</strong>`);
 
+let lastYear = null;
 let lastMonth = null;
 let lastWeek = null;
 
 const consoleTemplate = (template) => (result) => {
   const [year, [month, [week, tasks]]] = result;
 
-  const newMonth = lastMonth === null || month !== lastMonth ? `${year}\n` : "";
-  if (lastMonth === null) {
-    lastMonth = month;
-    lastWeek = null;
+  const newYear = lastYear === null || year !== lastYear ? `${yearTemplate(year, "console")}\n` : "";
+  if (lastYear === null) {
+    lastYear = year;
+    lastMonth = null;
   }
 
-  const newWeek = lastWeek === null || week !== lastWeek ? `${monthTemplate(month, "console")}, Week ${week}\n` : "";
+  const newMonth = lastMonth === null || month !== lastMonth ? `${monthTemplate(month, "console")}\n` : "";
+
+  if (lastMonth === null) {
+    lastMonth = month;
+  }
+
+  const newWeek = lastWeek === null || week !== lastWeek ? `Week ${week}\n` : "";
   if (lastWeek === null) {
     lastWeek = week;
   }
 
-  template = template ? (template += newMonth) : newMonth;
+  template = template ? (template += newYear) : newYear;
+  template += newMonth;
   template += newWeek;
 
   tasks.forEach((commit) => {

@@ -255,8 +255,8 @@ describe("report", () => {
     });
   });
 
-  test("R6.b: buildReport last 2 days", (done) => {
-    buildReport({ filename: filenameR6b, lastDays: 2 }).then((received) => {
+  test.only("R6.b: buildReport last 2 days", (done) => {
+    buildReport({ filename: filenameR6b, lastdays: 2 }).then((received) => {
       expect(received).toMatchSnapshot();
       done();
     });
