@@ -45,7 +45,7 @@ yargs(hideBin(process.argv))
       // if (argv.verbose) console.info(`Report from :${argv.filename}`);
       console.info(`Making log from :${argv.filename}`);
       console.info(`Username :${argv.username}`);
-      makeLog({ filename: argv.filename, channel: "console", lastdays: argv.lastdays });
+      makeLog(argv.filename, argv.username);
     }
   )
   .command(
