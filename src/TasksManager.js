@@ -20,12 +20,12 @@ const TasksManager = (items) => {
     const { lastTaskDate } = getBounds();
     const d = new Date(lastTaskDate);
     d.setDate(d.getDate() - days);
-    const gap = Math.abs(dateDiffDays(d, lastTaskDate));
-    if (gap > getLength()) {
-      return null;
-    } else {
-      return d;
-    }
+    // const gap = Math.abs(dateDiffDays(d, lastTaskDate));
+    // if (gap > getLength()) {
+    //   return null;
+    // } else {
+    return d;
+    // }
   };
 
   const getLength = () => {

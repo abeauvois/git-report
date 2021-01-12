@@ -89,7 +89,49 @@ function taskReducer(ampm, emptyKey) {
   };
 }
 
-const toMessagesMapper = (day, emptyKey = "off") => ([_, tasks]) => ({
+const getTask$ = (filename) =>
+  fromCSVFile(filename).pipe(
+    skip(1),
+    map((task) => commitToTask(task)),
+    toArray(),
+    map((received) => received.sort(compareValues("milliseconds")))
+  );
+
+const mergeTasksWithCalendar = (task$) => {
+  const source$ = interval(10);
+
+  const getDay$ = (startDate, days) =>
+    getCalendarDaysStartingAt(source$, startDate).pipe(
+      take(days),
+      map((day) => dateToTaskMapper(day)),
+      toArray()
+    );
+
+  return task$.pipe(
+    flatMap((tm) => {
+      const { firstTaskDate } = tm.getBounds();
+      const tasks = tm.getState().items;
+      const numDays = tm.getLength();
+      const calendarDays = getDay$(firstTaskDate, numDays);
+      tm.log();
+      return concat(from(tasks), from(calendarDays));
+    }),
+    scan((acc, curr) => acc.concat(curr), []),
+    last(),
+    map((received) => received.sort(compareValues("milliseconds"))),
+    flatMap((tasks) => {
+      return from(tasks);
+    })
+  );
+};
+
+const isSameDay = (task, calendar) =>
+  task.year === calendar.year && task.month === calendar.month && task.day === calendar.day;
+
+const aggregateDiffs = (task$, day$) =>
+  zip(task$, day$).pipe(map(([task, day]) => (isSameDay(task, day) ? [task] : [task, day])));
+
+const toMessagesMapper = (emptyKey = "off") => ([_, tasks]) => ({
   date: tasks[0].date,
   day: tasks[0].day,
   week: tasks[0].week,
@@ -100,52 +142,25 @@ const toMessagesMapper = (day, emptyKey = "off") => ([_, tasks]) => ({
   messagesPm: tasks.reduce(taskReducer("am", emptyKey), emptyKey),
 });
 
-const getTask$ = (filename) =>
-  fromCSVFile(filename).pipe(
-    skip(1),
-    map((task) => commitToTask(task)),
-    toArray(),
-    map((received) => received.sort(compareValues("milliseconds")))
-  );
-
-const mergeTasksWithCalendar = (task$, lastdays) => {
-  const source$ = interval(10);
-
-  const getDay$ = (startDate, days) =>
-    getCalendarDaysStartingAt(source$, startDate).pipe(
-      take(days),
-      map((day) => dateToTaskMapper(day)),
-      takeLast(lastdays || days),
-      toArray()
-    );
-
-  return task$.pipe(
-    flatMap((tm) => {
-      const { firstTaskDate } = tm.getBounds();
-      const tasks = tm.getState().items;
-      const numDays = tm.getLength();
-      const calendarDays = getDay$(firstTaskDate, numDays);
-      console.log("Last days:", lastdays);
-      tm.log();
-      return concat(from(tasks).pipe(takeLast(lastdays || numDays)), from(calendarDays));
-    }),
-    scan((acc, curr) => acc.concat(curr), []),
-    last(),
-    map((received) => received.sort(compareValues("milliseconds")))
-  );
-};
-
-const isSameDay = (task, calendar) =>
-  task.year === calendar.year && task.month === calendar.month && task.day === calendar.day;
-
-const aggregateDiffs = (task$, day$) =>
-  zip(task$, day$).pipe(map(([task, day]) => (isSameDay(task, day) ? [task] : [task, day])));
-
 const groupAndMergeByYear = pipe(groupByYear, mergeByGroup);
 const groupAndMergeByMonth = pipe(groupByMonth, mergeByGroup);
 const groupAndMergeByWeek = pipe(groupByWeek, mergeByGroup);
 const groupAndMergeByDay = pipe(groupByDay, mergeByGroup);
-const groupMessagesByDay = ([month, tasks]) => from(tasks).pipe(groupByDay, mergeByGroup, map(toMessagesMapper(month)));
+const groupMessagesByDay = (tasks) => from(tasks).pipe(groupAndMergeByDay, map(toMessagesMapper()), toArray());
+
+const aggregateByMonthYearWeekDay = (task$, lastdays) => {
+  return mergeTasksWithCalendar(task$).pipe(
+    groupAndMergeByYear,
+    flatMap(([year, tasks]) => combineLatest([of(year), from(tasks).pipe(groupAndMergeByMonth)])),
+    flatMap(([year, [month, tasks]]) =>
+      combineLatest([of(year), combineLatest([of(month), from(tasks).pipe(groupAndMergeByWeek)])])
+    ),
+    flatMap(([year, [month, [week, tasks]]]) => {
+      let task$ = lastdays ? groupMessagesByDay(tasks).pipe(takeLast(lastdays)) : groupMessagesByDay(tasks);
+      return combineLatest([of(year), combineLatest([of(month), combineLatest([of(week), task$])])]);
+    })
+  );
+};
 
 const buildReport = ({ report = "", filename, lastdays }) => {
   const task$ = getTask$(filename).pipe(
@@ -155,22 +170,8 @@ const buildReport = ({ report = "", filename, lastdays }) => {
     })
   );
 
-  const source$ = mergeTasksWithCalendar(task$, lastdays).pipe(
-    flatMap((tasks) => {
-      return from(tasks);
-    }),
-    groupAndMergeByDay,
-    mergeMap(groupMessagesByDay),
-    // filter((day) => day.getDay() !== 0 && day.getDay() !== 6), // remove Sunday & Saturday
-    groupAndMergeByYear,
-    flatMap(([year, tasks]) => combineLatest([of(year), from(tasks).pipe(groupAndMergeByMonth)])),
-    flatMap(([year, [month, tasks]]) =>
-      combineLatest([of(year), combineLatest([of(month), from(tasks).pipe(groupAndMergeByWeek)])])
-    )
-  );
-
   return new Promise((resolve, reject) => {
-    source$.subscribe(
+    aggregateByMonthYearWeekDay(task$, lastdays).subscribe(
       (result) => (report = consoleTemplate(report)(result)),
       (error) => console.log("errror:", error) || reject(error),
       () => console.log(report) || resolve(report)
@@ -207,6 +208,7 @@ module.exports = {
   groupAndMergeByWeek,
   groupAndMergeByDay,
   groupMessagesByDay,
+  aggregateByMonthYearWeekDay,
   buildReport,
   sendReport,
 };

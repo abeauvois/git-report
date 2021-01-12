@@ -16,9 +16,8 @@ yargs(hideBin(process.argv))
           default: "./csv/real-world-git-log.csv",
         })
         .positional("lastdays", {
-          describe: "Only the last `lastdays` (defaul: 60)",
+          describe: "Only the last `lastdays`",
           type: "num",
-          default: 60,
         });
     },
     (argv) => {

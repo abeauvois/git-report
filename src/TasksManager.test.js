@@ -94,7 +94,50 @@ describe("Task Manager", () => {
     expect(tm.getState().items).toEqual([]);
   });
 
-  test("R3: getDateBeforeLastTaskDate should not mutate TasksManager state", () => {
+  test("R3.a: getDateBeforeLastTaskDate should return a date 100 days before lastdate", () => {
+    const tasks = [
+      {
+        date: "2020/12/23",
+        day: 23,
+        dayWeek: 3,
+        messagesAm: "msg1 23 dec 2020",
+        messagesPm: "off",
+        month: 11,
+        week: 52,
+        year: 2020,
+      },
+      {
+        date: "2020/12/24",
+        day: 24,
+        dayWeek: 4,
+        messagesAm: "off",
+        messagesPm: "msg1 24 dec 2020",
+        month: 11,
+        week: 52,
+        year: 2020,
+      },
+      {
+        date: "2020/12/25",
+        day: 25,
+        dayWeek: 5,
+        messagesAm: "off",
+        messagesPm: "off",
+        month: 11,
+        week: 52,
+        year: 2020,
+      },
+    ];
+
+    const tm = TasksManager(tasks);
+
+    const firstDate = tm.getDateBeforeLastTaskDate(365);
+    expect(toYYYYMMDD(firstDate)).toEqual("2019/12/26");
+
+    const lengthAfter = tm.getLength();
+    expect(lengthAfter).toEqual(3);
+  });
+
+  test("R3.b: getDateBeforeLastTaskDate should not mutate TasksManager state", () => {
     const tasks = [
       {
         date: "2020/12/23",

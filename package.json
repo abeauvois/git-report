@@ -9,7 +9,7 @@
     "watch": "nodemon gitReport.js",
     "test": "jest --watch",
     "build": "pkg . -t node10-macos-x64 -o ./bin/gitreport && yarn exe",
-    "exe": "./bin/gitreport console ./csv/gitlog.csv 60"
+    "exe": "./bin/gitreport console ./csv/gitlog.csv"
   },
   "jest": {
     "verbose": true

@@ -137,6 +137,414 @@ Array [
   Array [
     Object {
       "ampm": "am",
+      "date": "2020/10/10",
+      "day": 10,
+      "dayWeek": 6,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602280800000,
+      "month": 9,
+      "week": 41,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/10",
+      "day": 10,
+      "dayWeek": 6,
+      "hour": 10,
+      "message": "m1 10 oct",
+      "milliseconds": 1602319239000,
+      "month": 9,
+      "week": 41,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/11",
+      "day": 11,
+      "dayWeek": 0,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602367200000,
+      "month": 9,
+      "week": 42,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/12",
+      "day": 12,
+      "dayWeek": 1,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602453600000,
+      "month": 9,
+      "week": 42,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/13",
+      "day": 13,
+      "dayWeek": 2,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602540000000,
+      "month": 9,
+      "week": 42,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/14",
+      "day": 14,
+      "dayWeek": 3,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602626400000,
+      "month": 9,
+      "week": 42,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/15",
+      "day": 15,
+      "dayWeek": 4,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602712800000,
+      "month": 9,
+      "week": 42,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/16",
+      "day": 16,
+      "dayWeek": 5,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602799200000,
+      "month": 9,
+      "week": 42,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/17",
+      "day": 17,
+      "dayWeek": 6,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602885600000,
+      "month": 9,
+      "week": 42,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/18",
+      "day": 18,
+      "dayWeek": 0,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1602972000000,
+      "month": 9,
+      "week": 43,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/19",
+      "day": 19,
+      "dayWeek": 1,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603058400000,
+      "month": 9,
+      "week": 43,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/20",
+      "day": 20,
+      "dayWeek": 2,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603144800000,
+      "month": 9,
+      "week": 43,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/21",
+      "day": 21,
+      "dayWeek": 3,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603231200000,
+      "month": 9,
+      "week": 43,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/22",
+      "day": 22,
+      "dayWeek": 4,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603317600000,
+      "month": 9,
+      "week": 43,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/23",
+      "day": 23,
+      "dayWeek": 5,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603404000000,
+      "month": 9,
+      "week": 43,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/24",
+      "day": 24,
+      "dayWeek": 6,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603490400000,
+      "month": 9,
+      "week": 43,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/25",
+      "day": 25,
+      "dayWeek": 0,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603576800000,
+      "month": 9,
+      "week": 44,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/26",
+      "day": 26,
+      "dayWeek": 1,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603666800000,
+      "month": 9,
+      "week": 44,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/27",
+      "day": 27,
+      "dayWeek": 2,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603753200000,
+      "month": 9,
+      "week": 44,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/28",
+      "day": 28,
+      "dayWeek": 3,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603839600000,
+      "month": 9,
+      "week": 44,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/29",
+      "day": 29,
+      "dayWeek": 4,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1603926000000,
+      "month": 9,
+      "week": 44,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/30",
+      "day": 30,
+      "dayWeek": 5,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604012400000,
+      "month": 9,
+      "week": 44,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/10/31",
+      "day": 31,
+      "dayWeek": 6,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604098800000,
+      "month": 9,
+      "week": 44,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/01",
+      "day": 1,
+      "dayWeek": 0,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604185200000,
+      "month": 10,
+      "week": 45,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/02",
+      "day": 2,
+      "dayWeek": 1,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604271600000,
+      "month": 10,
+      "week": 45,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/03",
+      "day": 3,
+      "dayWeek": 2,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604358000000,
+      "month": 10,
+      "week": 45,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/04",
+      "day": 4,
+      "dayWeek": 3,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604444400000,
+      "month": 10,
+      "week": 45,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/05",
+      "day": 5,
+      "dayWeek": 4,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604530800000,
+      "month": 10,
+      "week": 45,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/06",
+      "day": 6,
+      "dayWeek": 5,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604617200000,
+      "month": 10,
+      "week": 45,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/07",
+      "day": 7,
+      "dayWeek": 6,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604703600000,
+      "month": 10,
+      "week": 45,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/08",
+      "day": 8,
+      "dayWeek": 0,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604790000000,
+      "month": 10,
+      "week": 46,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/09",
+      "day": 9,
+      "dayWeek": 1,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604876400000,
+      "month": 10,
+      "week": 46,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/10",
+      "day": 10,
+      "dayWeek": 2,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1604962800000,
+      "month": 10,
+      "week": 46,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
+      "date": "2020/11/11",
+      "day": 11,
+      "dayWeek": 3,
+      "hour": 0,
+      "message": "off",
+      "milliseconds": 1605049200000,
+      "month": 10,
+      "week": 46,
+      "year": 2020,
+    },
+    Object {
+      "ampm": "am",
       "date": "2020/11/12",
       "day": 12,
       "dayWeek": 4,
@@ -187,77 +595,22 @@ Array [
 ]
 `;
 
-exports[`report R4: groupMessagesByDay 1`] = `
-Array [
-  Object {
-    "date": "2020/11/12",
-    "day": 12,
-    "dayWeek": 4,
-    "messagesAm": "m1 12 nov",
-    "messagesPm": "off",
-    "month": 10,
-    "week": 46,
-    "year": 2020,
-  },
-  Object {
-    "date": "2020/11/13",
-    "day": 13,
-    "dayWeek": 5,
-    "messagesAm": "m1 13 nov",
-    "messagesPm": "off",
-    "month": 10,
-    "week": 46,
-    "year": 2020,
-  },
-]
-`;
-
-exports[`report R5: groupByYear 1`] = `
+exports[`report R4: aggregate by Year, Month, Week and Day 1`] = `
 Array [
   2020,
   Array [
-    11,
+    9,
     Array [
-      52,
+      41,
       Array [
         Object {
-          "date": "2020/12/23",
-          "day": 23,
-          "dayWeek": 3,
-          "messagesAm": "msg1 23 dec 2020",
-          "messagesPm": "off",
-          "month": 11,
-          "week": 52,
-          "year": 2020,
-        },
-        Object {
-          "date": "2020/12/24",
-          "day": 24,
-          "dayWeek": 4,
-          "messagesAm": "off",
-          "messagesPm": "msg1 24 dec 2020",
-          "month": 11,
-          "week": 52,
-          "year": 2020,
-        },
-        Object {
-          "date": "2020/12/25",
-          "day": 25,
-          "dayWeek": 5,
-          "messagesAm": "off",
-          "messagesPm": "off",
-          "month": 11,
-          "week": 52,
-          "year": 2020,
-        },
-        Object {
-          "date": "2020/12/26",
-          "day": 26,
+          "date": "2020/10/10",
+          "day": 10,
           "dayWeek": 6,
-          "messagesAm": "off",
+          "messagesAm": "m1 10 oct",
           "messagesPm": "off",
-          "month": 11,
-          "week": 52,
+          "month": 9,
+          "week": 41,
           "year": 2020,
         },
       ],
@@ -266,62 +619,82 @@ Array [
 ]
 `;
 
-exports[`report R5: groupByYear 2`] = `
+exports[`report R4: aggregate by Year, Month, Week and Day 2`] = `
 Array [
   2020,
   Array [
-    11,
+    9,
     Array [
-      53,
+      42,
       Array [
         Object {
-          "date": "2020/12/27",
-          "day": 27,
+          "date": "2020/10/11",
+          "day": 11,
           "dayWeek": 0,
           "messagesAm": "off",
           "messagesPm": "off",
-          "month": 11,
-          "week": 53,
+          "month": 9,
+          "week": 42,
           "year": 2020,
         },
         Object {
-          "date": "2020/12/28",
-          "day": 28,
+          "date": "2020/10/12",
+          "day": 12,
           "dayWeek": 1,
           "messagesAm": "off",
           "messagesPm": "off",
-          "month": 11,
-          "week": 53,
+          "month": 9,
+          "week": 42,
           "year": 2020,
         },
         Object {
-          "date": "2020/12/29",
-          "day": 29,
+          "date": "2020/10/13",
+          "day": 13,
           "dayWeek": 2,
           "messagesAm": "off",
           "messagesPm": "off",
-          "month": 11,
-          "week": 53,
+          "month": 9,
+          "week": 42,
           "year": 2020,
         },
         Object {
-          "date": "2020/12/30",
-          "day": 30,
+          "date": "2020/10/14",
+          "day": 14,
           "dayWeek": 3,
           "messagesAm": "off",
           "messagesPm": "off",
-          "month": 11,
-          "week": 53,
+          "month": 9,
+          "week": 42,
           "year": 2020,
         },
         Object {
-          "date": "2020/12/31",
-          "day": 31,
+          "date": "2020/10/15",
+          "day": 15,
           "dayWeek": 4,
           "messagesAm": "off",
           "messagesPm": "off",
-          "month": 11,
-          "week": 53,
+          "month": 9,
+          "week": 42,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/16",
+          "day": 16,
+          "dayWeek": 5,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 42,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/17",
+          "day": 17,
+          "dayWeek": 6,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 42,
           "year": 2020,
         },
       ],
@@ -330,67 +703,83 @@ Array [
 ]
 `;
 
-exports[`report R5: groupByYear 3`] = `
+exports[`report R4: aggregate by Year, Month, Week and Day 3`] = `
 Array [
-  2021,
+  2020,
   Array [
-    0,
+    9,
     Array [
-      0,
+      43,
       Array [
         Object {
-          "date": "2021/01/01",
-          "day": 1,
-          "dayWeek": 5,
-          "messagesAm": "off",
-          "messagesPm": "off",
-          "month": 0,
-          "week": 0,
-          "year": 2021,
-        },
-        Object {
-          "date": "2021/01/02",
-          "day": 2,
-          "dayWeek": 6,
-          "messagesAm": "off",
-          "messagesPm": "off",
-          "month": 0,
-          "week": 0,
-          "year": 2021,
-        },
-      ],
-    ],
-  ],
-]
-`;
-
-exports[`report R5: groupByYear 4`] = `
-Array [
-  2021,
-  Array [
-    0,
-    Array [
-      1,
-      Array [
-        Object {
-          "date": "2021/01/03",
-          "day": 3,
+          "date": "2020/10/18",
+          "day": 18,
           "dayWeek": 0,
           "messagesAm": "off",
           "messagesPm": "off",
-          "month": 0,
-          "week": 1,
-          "year": 2021,
+          "month": 9,
+          "week": 43,
+          "year": 2020,
         },
         Object {
-          "date": "2021/01/04",
-          "day": 4,
+          "date": "2020/10/19",
+          "day": 19,
           "dayWeek": 1,
           "messagesAm": "off",
-          "messagesPm": "msg1 04 jan 2021",
-          "month": 0,
-          "week": 1,
-          "year": 2021,
+          "messagesPm": "off",
+          "month": 9,
+          "week": 43,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/20",
+          "day": 20,
+          "dayWeek": 2,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 43,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/21",
+          "day": 21,
+          "dayWeek": 3,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 43,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/22",
+          "day": 22,
+          "dayWeek": 4,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 43,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/23",
+          "day": 23,
+          "dayWeek": 5,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 43,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/24",
+          "day": 24,
+          "dayWeek": 6,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 43,
+          "year": 2020,
         },
       ],
     ],
@@ -398,9 +787,252 @@ Array [
 ]
 `;
 
-exports[`report R6.a: buildReport 1`] = `
-"2020
-[34mDec[39m, Week 51
+exports[`report R4: aggregate by Year, Month, Week and Day 4`] = `
+Array [
+  2020,
+  Array [
+    9,
+    Array [
+      44,
+      Array [
+        Object {
+          "date": "2020/10/25",
+          "day": 25,
+          "dayWeek": 0,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 44,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/26",
+          "day": 26,
+          "dayWeek": 1,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 44,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/27",
+          "day": 27,
+          "dayWeek": 2,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 44,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/28",
+          "day": 28,
+          "dayWeek": 3,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 44,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/29",
+          "day": 29,
+          "dayWeek": 4,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 44,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/30",
+          "day": 30,
+          "dayWeek": 5,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 44,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/10/31",
+          "day": 31,
+          "dayWeek": 6,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 9,
+          "week": 44,
+          "year": 2020,
+        },
+      ],
+    ],
+  ],
+]
+`;
+
+exports[`report R4: aggregate by Year, Month, Week and Day 5`] = `
+Array [
+  2020,
+  Array [
+    10,
+    Array [
+      45,
+      Array [
+        Object {
+          "date": "2020/11/01",
+          "day": 1,
+          "dayWeek": 0,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 45,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/02",
+          "day": 2,
+          "dayWeek": 1,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 45,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/03",
+          "day": 3,
+          "dayWeek": 2,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 45,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/04",
+          "day": 4,
+          "dayWeek": 3,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 45,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/05",
+          "day": 5,
+          "dayWeek": 4,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 45,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/06",
+          "day": 6,
+          "dayWeek": 5,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 45,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/07",
+          "day": 7,
+          "dayWeek": 6,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 45,
+          "year": 2020,
+        },
+      ],
+    ],
+  ],
+]
+`;
+
+exports[`report R4: aggregate by Year, Month, Week and Day 6`] = `
+Array [
+  2020,
+  Array [
+    10,
+    Array [
+      46,
+      Array [
+        Object {
+          "date": "2020/11/08",
+          "day": 8,
+          "dayWeek": 0,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 46,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/09",
+          "day": 9,
+          "dayWeek": 1,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 46,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/10",
+          "day": 10,
+          "dayWeek": 2,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 46,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/11",
+          "day": 11,
+          "dayWeek": 3,
+          "messagesAm": "off",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 46,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/12",
+          "day": 12,
+          "dayWeek": 4,
+          "messagesAm": "m1 12 nov",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 46,
+          "year": 2020,
+        },
+        Object {
+          "date": "2020/11/13",
+          "day": 13,
+          "dayWeek": 5,
+          "messagesAm": "m1 13 nov",
+          "messagesPm": "off",
+          "month": 10,
+          "week": 46,
+          "year": 2020,
+        },
+      ],
+    ],
+  ],
+]
+`;
+
+exports[`report R5.a: buildReport 1`] = `
+"[31m2020[39m
+[34mDec[39m
+Week 51
 [33mThu[39m, [33m17[39m
 AM: [33mmsg1 17 dec 2020[39m
 PM: [33moff[39m
@@ -413,7 +1045,7 @@ PM: [33moff[39m
 AM: [33mmsg1 19 dec 2020[39m
 PM: [33moff[39m
 
-[34mDec[39m, Week 52
+Week 52
 [33mSun[39m, [33m20[39m
 AM: [33mmsg1 20 dec 2020[39m
 PM: [33moff[39m
@@ -442,7 +1074,7 @@ PM: [33mmsg1 25 dec 2020[39m
 AM: [33moff[39m
 PM: [33mmsg1 26 dec 2020[39m
 
-[34mDec[39m, Week 53
+Week 53
 [33mSun[39m, [33m27[39m
 AM: [33moff[39m
 PM: [33mmsg1 27 dec 2020[39m
@@ -463,8 +1095,9 @@ PM: [33moff[39m
 AM: [33moff[39m
 PM: [33moff[39m
 
-2021
-[34mJan[39m, Week 0
+[31m2021[39m
+[34mJan[39m
+Week 0
 [33mFri[39m, [33m1[39m
 AM: [33mmsg1 01 jan 2021[39m
 PM: [33moff[39m
@@ -472,13 +1105,64 @@ PM: [33moff[39m
 "
 `;
 
-exports[`report R6.b: buildReport last 2 days 1`] = `
-"[31m2020[39m
-[34mDec[39m
+exports[`report R5.b: buildReport last 2 days 1`] = `
+"[33mThu[39m, [33m17[39m
+AM: [33mmsg1 17 dec 2020[39m
+PM: [33moff[39m
+
+[33mFri[39m, [33m18[39m
+AM: [33mmsg1 18 dec 2020[39m
+PM: [33moff[39m
+
+[33mSat[39m, [33m19[39m
+AM: [33mmsg1 19 dec 2020[39m
+PM: [33moff[39m
+
+Week 52
+[33mSun[39m, [33m20[39m
+AM: [33mmsg1 20 dec 2020[39m
+PM: [33moff[39m
+
+[33mMon[39m, [33m21[39m
+AM: [33mmsg1 21 dec 2020[39m
+PM: [33moff[39m
+
+[33mTue[39m, [33m22[39m
+AM: [33mmsg1 22 dec 2020[39m
+PM: [33moff[39m
+
+[33mWed[39m, [33m23[39m
+AM: [33moff[39m
+PM: [33mmsg1 23 dec 2020[39m
+
+[33mThu[39m, [33m24[39m
+AM: [33moff[39m
+PM: [33mmsg1 24 dec 2020[39m
+
+[33mFri[39m, [33m25[39m
+AM: [33moff[39m
+PM: [33mmsg1 25 dec 2020[39m
+
+[33mSat[39m, [33m26[39m
+AM: [33moff[39m
+PM: [33mmsg1 26 dec 2020[39m
+
 Week 53
+[33mSun[39m, [33m27[39m
+AM: [33moff[39m
+PM: [33mmsg1 27 dec 2020[39m
+
+[33mMon[39m, [33m28[39m
+AM: [33moff[39m
+PM: [33mmsg1 28 dec 2020[39m
+
 [33mTue[39m, [33m29[39m
 AM: [33moff[39m
 PM: [33mmsg1 29 dec 2020[39m
+
+[33mWed[39m, [33m30[39m
+AM: [33moff[39m
+PM: [33moff[39m
 
 [33mThu[39m, [33m31[39m
 AM: [33moff[39m
