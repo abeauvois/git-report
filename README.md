@@ -27,11 +27,11 @@ gitreport console ./csv/gitlog.csv -v
 - [x] make it installable
 - [x] add year titles (`2020`) => remove month
 - [x] add calendar week titles (`week 43`) => add a calendar day by day stream
+- [ ] add `makelog` command to exctract the `git log` csv file (from current branch)
 - [ ] add `lastdays` parameter => report only last N days
 - [ ] add calendar week titles (`Feb 12-23`) => find first and last day for a given week
 - [ ] add `fromDate` parameter
 - [ ] add `defaultMessage` parameter when AM or PM empty (ie 'meeting')
-- [ ] add `makelog` command to exctract the `git log` csv file (from current branch)
 - [ ] add `emailTo` parameter
 - [ ] accept formatting options (ie "Day 5:" => "Thu 5, Nov 2020:")
 
@@ -58,13 +58,13 @@ npm i
 yarn global add pkg
 
 # run the compiler for your architecture (see details here: https://github.com/vercel/pkg)
- yarn build
+yarn build
 ```
 
 ### How to execute
 
 ```bash
- yarn exec
+yarn exec
 
 OR
 # copy all files in ./bin
@@ -79,7 +79,7 @@ gitreport console ./csv/gitlog.csv -v
  > echo sha, contributor, date, message > ./csv/gitlog.csv
 ```
 
-- Append the CSV file with git log output, filtered by your `git username`
+- Append the CSV file with git log output, filtered by your git username
 
 ```bash
  > git log --date=local --pretty=format:'%h, %an, %ad, "%s"' | egrep {YOUR GIT USERNAME} >> ./csv/gitlog.csv
