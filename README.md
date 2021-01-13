@@ -2,23 +2,32 @@
 
 ## Overview
 
-This report is useful for automating `developpers activities reporting` based on `git commits`.
+This CLI (command line interface) tool is useful for automating `developpers activities reporting` based on `git commits`.
 
-You can display it:
+Just run this command to create the csv file from git log:
 
-1. in your terminal
+```bash
+> gitreport makeLog example.csv abeauvois
+```
 
-Or
+Then run this command to build & display the report
+(ordered by YEAR / MONTH / WEEK / DAY / AM PM):
 
-2. send it to yourself via gmail.
+```bash
+> gitreport console gitlog.csv
+```
+
+You should see something like this in your terminal:
+
+![git-report-result](git-report-result.png)
 
 ## How to install
+
+Copy/paste this command in your terminal:
 
 ```bash
 # install
 curl "https://raw.githubusercontent.com/abeauvois/git-report/main/bin/gitreport" -o /usr/local/bin/gitreport && chmod +x /usr/local/bin/gitreport
-# execute
-gitreport console ./csv/gitlog.csv -v
 ```
 
 ## Todos
@@ -27,7 +36,7 @@ gitreport console ./csv/gitlog.csv -v
 - [x] make it installable
 - [x] add year titles (`2020`) => remove month
 - [x] add calendar week titles (`week 43`) => add a calendar day by day stream
-- [ ] add `makelog` command to exctract the `git log` csv file (from current branch)
+- [x] add `makeLog` command to exctract the `git log` csv file (from current branch)
 - [ ] add `lastdays` parameter => report only last N days
 - [ ] add calendar week titles (`Feb 12-23`) => find first and last day for a given week
 - [ ] add `fromDate` parameter
@@ -64,7 +73,7 @@ yarn build
 ### How to execute
 
 ```bash
-yarn exec
+yarn exe
 
 OR
 # copy all files in ./bin
@@ -73,7 +82,7 @@ cp ./bin/ /usr/local/bin/
 gitreport console ./csv/gitlog.csv -v
 ```
 
-## How to create a CSV file with a line of headers (in /csv folder)
+## How to create manually a CSV file with a line of headers (in /csv folder)
 
 ```bash
  > echo sha, contributor, date, message > ./csv/gitlog.csv
@@ -94,10 +103,6 @@ yarn start console ./csv/real-world-git-log.csv -v
 # use your own csv file (produced by the git log command above)
 yarn start console ./csv/{your_csv_file} -v
 ```
-
-**You should see the following result in the terminal:**
-
-![git-report-result](git-report-result.png)
 
 ## 2. For a report sent by email to yourself (via gmail):
 
